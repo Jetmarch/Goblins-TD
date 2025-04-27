@@ -79,7 +79,7 @@ namespace Game.Gameplay
         private void OnDrawGizmos()
         {
             Gizmos.color = new Color(1, 1, 0f, 0.2f);
-            Gizmos.DrawSphere(transform.position, _attackRange);
+            Gizmos.DrawWireSphere(transform.position, _attackRange);
         }
     }
 }

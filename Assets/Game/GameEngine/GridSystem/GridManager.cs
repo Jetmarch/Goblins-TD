@@ -26,13 +26,14 @@ namespace Game.GameEngine.GridSystem
             {
                 var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
                 
-                Debug.Log($"World point: {worldPoint}");
                 var cell = _grid.GetCellByPosition(worldPoint.x, worldPoint.y);
                 if (cell == null) return;
                 
                 Debug.Log($"Cell position: {cell.XPos}, {cell.YPos}");
                 cell.SetBusy(!cell.IsBusy);
             }
+            
+            _grid.SetPosition(_gridPosition.position);
         }
         
         private void OnDrawGizmos()
@@ -47,8 +48,10 @@ namespace Game.GameEngine.GridSystem
                     var currentCell = _grid.Cells[x, y];
                     var cellSize = currentCell.Size;
                     var halfCellSize = cellSize * 0.5f;
-                    var xPos = (_gridPosition.position.x + currentCell.XPos * currentCell.Size) + halfCellSize;
-                    var yPos = (_gridPosition.position.y + currentCell.YPos * currentCell.Size) + halfCellSize;
+                    var xPos = (currentCell.XPos * currentCell.Size) + _grid.Position.x + halfCellSize;
+                    var yPos = (currentCell.YPos * currentCell.Size) + _grid.Position.y + halfCellSize;
+                    xPos -= _grid.Width * halfCellSize;
+                    yPos -= _grid.Height * halfCellSize;
                     
                     var position = new Vector3(xPos, yPos, 0);
                     var size = new Vector3(cellSize, cellSize, 0);
@@ -98,7 +101,7 @@ namespace Game.GameEngine.GridSystem
         {
             var xPos = _gridPosition.position.x;
             var yPos = _gridPosition.position.y;
-            _grid = new Grid(xPos, yPos, _gridWidth, _gridHeight, _cellSize);
+            _grid = new Grid(_gridPosition.position, _gridWidth, _gridHeight, _cellSize);
         }
     }
 }
