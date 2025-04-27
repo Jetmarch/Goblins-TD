@@ -10,6 +10,8 @@ namespace Game.GameEngine.GridSystem
         [SerializeField] private int _gridHeight;
         [SerializeField] private float _cellSize;
         
+        [SerializeField] private bool _showGrid;
+        
         private Grid _grid;
         private Camera _camera;
         
@@ -22,22 +24,22 @@ namespace Game.GameEngine.GridSystem
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-                
-                var cell = _grid.GetCellByPosition(worldPoint.x, worldPoint.y);
-                if (cell == null) return;
-                
-                Debug.Log($"Cell position: {cell.XPos}, {cell.YPos}");
-                cell.SetBusy(!cell.IsBusy);
-            }
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
+            //     
+            //     var cell = _grid.GetCellByPosition(worldPoint.x, worldPoint.y);
+            //     if (cell == null) return;
+            //     cell.SetBusy(!cell.IsBusy);
+            // }
             
             _grid.SetPosition(_gridPosition.position);
         }
         
         private void OnDrawGizmos()
         {
+            if (!_showGrid) return;
+            
             if (_grid == null) return;
             Gizmos.color = Color.green;
             
@@ -68,33 +70,6 @@ namespace Game.GameEngine.GridSystem
             }
         }
         #endregion
-
-        private Cell GetCellByWorldPosition(Vector3 worldPosition)
-        {
-            var worldX = worldPosition.x;
-            var worldY = worldPosition.y;
-            for (int x = 0; x < _gridWidth; x++)
-            {
-                for (int y = 0; y < _gridHeight; y++)
-                {
-                    var currentCell = _grid.Cells[x, y];
-                    var cellSize = currentCell.Size;
-                    var halfCellSize = 0f;// cellSize * 0.5f;
-                    var xPos = (_gridPosition.position.x + currentCell.XPos * currentCell.Size) + halfCellSize;
-                    var yPos = (_gridPosition.position.y + currentCell.YPos * currentCell.Size) + halfCellSize;
-                    var cellPosition = new Vector3(xPos, yPos, 0);
-
-
-                    if (worldX > xPos && worldX < xPos + cellSize
-                                      && worldY > yPos && worldY < yPos + cellSize)
-                    {
-                        return currentCell;
-                    }
-                }
-            }
-            return default;
-        }
-        
 
         [ContextMenu("ConstructGrid")]
         public void ConstructGrid()
