@@ -1,4 +1,5 @@
-using System;
+using Game.GameEngine;
+using Game.UI;
 using UnityEngine;
 
 namespace Game.Gameplay
@@ -7,17 +8,32 @@ namespace Game.Gameplay
     public class BasicEnemy : MonoBehaviour
     {
         [SerializeField] private float _speed = 1f;
-        [SerializeField] private float _currentHealth = 10f;
+        [SerializeField] private HealthStorage _healthStorage;
         [SerializeField] private Vector2 _direction;
         
         [SerializeField] private Rigidbody2D _rigidbody;
         
         [SerializeField] private Bounds _deathBounds;
         
+        [SerializeField] private EntityHealthBarView _healthBarView;
+        
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _healthStorage.Reset();
+        }
+
+        private void OnEnable()
+        {
+            _healthStorage.OnDeath += Die;
+            _healthStorage.OnHealthChanged += UpdateHealthBar;
+        }
+
+        private void OnDisable()
+        {
+            _healthStorage.OnDeath -= Die;
+            _healthStorage.OnHealthChanged -= UpdateHealthBar;
         }
 
         private void FixedUpdate()
@@ -31,12 +47,18 @@ namespace Game.Gameplay
 
         public void TakeDamage(float damage)
         {
-            _currentHealth -= damage;
+            _healthStorage.DecreaseHealth(damage);
+            
+        }
 
-            if (_currentHealth <= 0)
-            {
-                Destroy(gameObject);
-            }
+        private void UpdateHealthBar()
+        {
+            _healthBarView.UpdateHealthBar(_healthStorage.CurrentHealth, _healthStorage.MaxHealth);
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
 
         private void OnDrawGizmos()

@@ -38,7 +38,7 @@ namespace Game.Gameplay
 
         private bool IsTargetValid()
         {
-            return _currentTarget != null;
+            return _currentTarget;
         }
 
         private void TryToAttackTarget()
@@ -59,7 +59,8 @@ namespace Game.Gameplay
 
         private void ScanForNewTargets()
         {
-            var countOfScannedTargets = Physics2D.OverlapCircle(transform.position, _attackRange, _contactFilter, _targets);
+            //Used ContactFilter2D.NoFilter for checking collsion results
+            var countOfScannedTargets = Physics2D.OverlapCircle(transform.position, _attackRange, _contactFilter.NoFilter(), _targets);
             if (countOfScannedTargets <= 0) return;
             if (!_currentTarget)
             {
