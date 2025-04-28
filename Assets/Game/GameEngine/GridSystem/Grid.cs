@@ -16,6 +16,9 @@ namespace Game.GameEngine.GridSystem
         private readonly int _height;
         private readonly float _cellSize;
 
+        private readonly float _widthOffset;
+        private readonly float _heightOffset;
+        
         public Grid(Vector2 position, int width, int height, float cellSize)
         {
             _position = position;
@@ -23,6 +26,10 @@ namespace Game.GameEngine.GridSystem
             _height = height;
             _cellSize = cellSize;
             _cells = new Cell[width, height];
+
+            var halfCellSize = _cellSize * 0.5f;
+            _widthOffset = _width * halfCellSize;
+            _heightOffset = height * halfCellSize;
             
             for (int x = 0; x < _width; x++)
             {
@@ -41,12 +48,8 @@ namespace Game.GameEngine.GridSystem
 
         public Cell GetCellByPosition(float worldX, float worldY)
         {
-            var halfCellSize = _cellSize * 0.5f;
-            var widthOffset = _width * halfCellSize;
-            var heightOffset = _height * halfCellSize;
-
-            var centeredXPosition = _position.x - widthOffset;
-            var centeredYPosition = _position.y - heightOffset;
+            var centeredXPosition = _position.x - _widthOffset;
+            var centeredYPosition = _position.y - _heightOffset;
             
             if (!CheckBounds(centeredXPosition, centeredYPosition,
                     _width * _cellSize,
@@ -72,6 +75,34 @@ namespace Game.GameEngine.GridSystem
                 }
             }
             return default;
+        }
+        
+        public bool IsGridInBounds(Grid grid)
+        {
+            foreach (var cell in grid.Cells)
+            {
+                if(!IsCellInBounds(cell)) return false;
+            }
+            
+            return true;
+        }
+
+        private bool IsCellInBounds(Cell cell)
+        {
+            //TODO: Link cell coords to world coords
+            var centeredXPosition = _position.x - _widthOffset;
+            var centeredYPosition = _position.y - _heightOffset;
+            
+            if (!CheckBounds(centeredXPosition, centeredYPosition,
+                    _width * _cellSize,
+                    _height * _cellSize,
+                    cell.XPos, cell.YPos))
+            {
+                Debug.LogWarning("Out of bounds");
+                return false;
+            }
+
+            return true;
         }
         
         //TODO: Move to extensions or utils

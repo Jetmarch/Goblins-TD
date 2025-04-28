@@ -78,5 +78,15 @@ namespace Game.GameEngine.GridSystem
             var yPos = _gridPosition.position.y;
             _grid = new Grid(_gridPosition.position, _gridWidth, _gridHeight, _cellSize);
         }
+
+        public Cell GetCellByPosition(Vector2 position)
+        {
+            return _grid.GetCellByPosition(position.x, position.y);
+        }
+
+        public bool IsGridInBounds(Grid grid)
+        {
+            return _grid.IsGridInBounds(grid);
+        }
     }
 }
