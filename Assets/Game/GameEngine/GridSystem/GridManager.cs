@@ -5,6 +5,8 @@ namespace Game.GameEngine.GridSystem
 {
     public class GridManager : MonoBehaviour
     {
+        public Grid Grid => _grid;
+        
         [SerializeField] private Transform _gridPosition;   
         [SerializeField] private int _gridWidth;
         [SerializeField] private int _gridHeight;
@@ -24,14 +26,13 @@ namespace Game.GameEngine.GridSystem
 
         private void Update()
         {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-            //     
-            //     var cell = _grid.GetCellByPosition(worldPoint.x, worldPoint.y);
-            //     if (cell == null) return;
-            //     cell.SetBusy(!cell.IsBusy);
-            // }
+            if (Input.GetMouseButtonDown(0))
+            {
+                var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
+
+                var cell = _grid.GetCellByWorldPosition(worldPoint);
+                cell?.SetBusy(!cell.IsBusy);
+            }
             
             _grid.SetPosition(_gridPosition.position);
         }
@@ -52,8 +53,8 @@ namespace Game.GameEngine.GridSystem
                     var halfCellSize = cellSize * 0.5f;
                     var xPos = (currentCell.XPos * currentCell.Size) + _grid.Position.x + halfCellSize;
                     var yPos = (currentCell.YPos * currentCell.Size) + _grid.Position.y + halfCellSize;
-                    xPos -= _grid.Width * halfCellSize;
-                    yPos -= _grid.Height * halfCellSize;
+                    // xPos -= _grid.Width * halfCellSize;
+                    // yPos -= _grid.Height * halfCellSize;
                     
                     var position = new Vector3(xPos, yPos, 0);
                     var size = new Vector3(cellSize, cellSize, 0);
@@ -77,16 +78,6 @@ namespace Game.GameEngine.GridSystem
             var xPos = _gridPosition.position.x;
             var yPos = _gridPosition.position.y;
             _grid = new Grid(_gridPosition.position, _gridWidth, _gridHeight, _cellSize);
-        }
-
-        public Cell GetCellByPosition(Vector2 position)
-        {
-            return _grid.GetCellByPosition(position.x, position.y);
-        }
-
-        public bool IsGridInBounds(Grid grid)
-        {
-            return _grid.IsGridInBounds(grid);
         }
     }
 }

@@ -9,15 +9,13 @@ namespace Game.GameEngine.GridSystem
         public int Width => _width;
         public int Height => _height;
         public float CellSize => _cellSize;
+        
         private Vector2 _position;
         
         private readonly Cell[,] _cells;
         private readonly int _width;
         private readonly int _height;
         private readonly float _cellSize;
-
-        private readonly float _widthOffset;
-        private readonly float _heightOffset;
         
         public Grid(Vector2 position, int width, int height, float cellSize)
         {
@@ -26,10 +24,6 @@ namespace Game.GameEngine.GridSystem
             _height = height;
             _cellSize = cellSize;
             _cells = new Cell[width, height];
-
-            var halfCellSize = _cellSize * 0.5f;
-            _widthOffset = _width * halfCellSize;
-            _heightOffset = height * halfCellSize;
             
             for (int x = 0; x < _width; x++)
             {
@@ -46,70 +40,64 @@ namespace Game.GameEngine.GridSystem
             _position = position;
         }
 
-        public Cell GetCellByPosition(float worldX, float worldY)
+        public Cell GetCellByWorldPosition(Vector2 worldPosition)
         {
-            var centeredXPosition = _position.x - _widthOffset;
-            var centeredYPosition = _position.y - _heightOffset;
+            GetGridPosition(worldPosition, out var gridX, out var gridY);
             
-            if (!CheckBounds(centeredXPosition, centeredYPosition,
-                    _width * _cellSize,
-                    _height * _cellSize,
-                    worldX, worldY))
-            {
-                Debug.LogWarning("Out of bounds");
-                return default;
-            }
-            
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    var currentCell = _cells[x, y];
-                    var cellXPos = (centeredXPosition + currentCell.XPos * currentCell.Size);
-                    var cellYPos = (centeredYPosition + currentCell.YPos * currentCell.Size);
-
-                    if (CheckBounds(cellXPos, cellYPos, _cellSize, _cellSize, worldX, worldY))
-                    {
-                        return currentCell;
-                    }
-                }
-            }
-            return default;
-        }
-        
-        public bool IsGridInBounds(Grid grid)
-        {
-            foreach (var cell in grid.Cells)
-            {
-                if(!IsCellInBounds(cell)) return false;
-            }
-            
-            return true;
+            return GetCell(gridX, gridY);
         }
 
-        private bool IsCellInBounds(Cell cell)
+        private Cell GetCell(int x, int y)
         {
-            //TODO: Link cell coords to world coords
-            var centeredXPosition = _position.x - _widthOffset;
-            var centeredYPosition = _position.y - _heightOffset;
-            
-            if (!CheckBounds(centeredXPosition, centeredYPosition,
-                    _width * _cellSize,
-                    _height * _cellSize,
-                    cell.XPos, cell.YPos))
-            {
-                Debug.LogWarning("Out of bounds");
-                return false;
-            }
+            return !CheckBounds(x, y, _width, _height) ? default : _cells[x, y];
+        }
 
-            return true;
+        private void GetGridPosition(Vector2 worldPosition, out int gridX, out int gridY)
+        {
+            gridX = Mathf.FloorToInt((worldPosition.x - _position.x) / _cellSize);
+            gridY = Mathf.FloorToInt((worldPosition.y - _position.y) / _cellSize);
         }
         
         //TODO: Move to extensions or utils
-        private static bool CheckBounds(float aX, float aY, float aWidth, float aHeight, float bX, float bY)
+        private static bool CheckBounds(int gridX, int gridY, int width, int height)
         {
-            return (bX > aX && bX < aX + aWidth)
-                           && (bY > aY && bY < aY + aHeight);
+            if (gridX < 0 || gridX >= width || gridY < 0 || gridY >= height) return false;
+            return true;
         }
+        
+        // public bool IsGridInBounds(Grid grid)
+        // {
+        //     foreach (var cell in grid.Cells)
+        //     {
+        //         if(!IsCellInBounds(cell)) return false;
+        //     }
+        //     
+        //     return true;
+        // }
+        //
+        // private bool IsCellInBounds(Cell cell)
+        // {
+        //     //TODO: Link cell coords to world coords
+        //     var centeredXPosition = _position.x - _widthOffset;
+        //     var centeredYPosition = _position.y - _heightOffset;
+        //     
+        //     if (!CheckBounds(centeredXPosition, centeredYPosition,
+        //             _width * _cellSize,
+        //             _height * _cellSize,
+        //             cell.XPos, cell.YPos))
+        //     {
+        //         Debug.LogWarning("Out of bounds");
+        //         return false;
+        //     }
+        //
+        //     return true;
+        // }
+        
+        // //TODO: Move to extensions or utils
+        // private static bool CheckBounds(float aX, float aY, float aWidth, float aHeight, float bX, float bY)
+        // {
+        //     return (bX > aX && bX < aX + aWidth)
+        //                    && (bY > aY && bY < aY + aHeight);
+        // }
     }
 }

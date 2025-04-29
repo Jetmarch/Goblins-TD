@@ -1,6 +1,7 @@
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Grid = Game.GameEngine.GridSystem.Grid;
 
 namespace Game.GameEngine.DragAndDrop
@@ -8,7 +9,7 @@ namespace Game.GameEngine.DragAndDrop
     public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private GridManager _gridManager;
+        [SerializeField] private GridManager _globalGridManager;
 
         [SerializeField] private int _gridWidth = 2;
         [SerializeField] private int _gridHeight = 2;
@@ -18,7 +19,7 @@ namespace Game.GameEngine.DragAndDrop
         
         private bool _showGrid = false;
         
-        private Grid _grid;
+        private Grid _localGrid;
         
         private Camera _camera;
         
@@ -36,7 +37,7 @@ namespace Game.GameEngine.DragAndDrop
         {
             var xPos = transform.position.x;
             var yPos = transform.position.y;
-            _grid = new Grid(transform.position, _gridWidth, _gridHeight, _cellSize);
+            _localGrid = new Grid(transform.position, _gridWidth, _gridHeight, _cellSize);
         }
         
 
@@ -51,24 +52,37 @@ namespace Game.GameEngine.DragAndDrop
             _rectTransform.anchoredPosition += eventData.delta;
             
             var worldPoint = _camera.ScreenToWorldPoint(eventData.position);
-            Debug.Log(worldPoint);
-            if (_gridManager.IsGridInBounds(_grid))
+            
+            Debug.Log($"World point {worldPoint}");
+            _localGrid.SetPosition(worldPoint);
+            
+            var globalGrid = _globalGridManager.Grid;
+            foreach (var cell in globalGrid.Cells)
             {
-                foreach (var cell in _grid.Cells)
+                cell.SetBusy(false);
+            }
+
+            
+            foreach (var cell in _localGrid.Cells)
+            {
+                var cellWorldPositionX = cell.XPos * cell.Size + _localGrid.Position.x ;
+                var cellWorldPositionY = cell.YPos * cell.Size + _localGrid.Position.y ;
+                var cellWorldPosition = new Vector2(cellWorldPositionX, cellWorldPositionY);
+                Debug.Log($"Cell {cell.XPos}, {cell.YPos}, World {cellWorldPosition}");
+                var globalGridCell = globalGrid.GetCellByWorldPosition(cellWorldPosition);
+                if (globalGridCell != null && !globalGridCell.IsBusy)
                 {
                     cell.SetBusy(true);
+                    globalGridCell.SetBusy(true);
+                    Debug.Log($"Snapped global grid cell {globalGridCell.XPos}, {globalGridCell.YPos}");
                 }
-            }
-            else
-            {
-                foreach (var cell in _grid.Cells)
+                else
                 {
                     cell.SetBusy(false);
                 }
             }
+
             
-            
-            _grid.SetPosition(worldPoint);
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -81,20 +95,20 @@ namespace Game.GameEngine.DragAndDrop
         {
             if (!_showGrid) return;
             
-            if (_grid == null) return;
+            if (_localGrid == null) return;
             Gizmos.color = Color.green;
             
             for (int x = 0; x < _gridWidth; x++)
             {
                 for (int y = 0; y < _gridHeight; y++)
                 {
-                    var currentCell = _grid.Cells[x, y];
+                    var currentCell = _localGrid.Cells[x, y];
                     var cellSize = currentCell.Size;
                     var halfCellSize = cellSize * 0.5f;
-                    var xPos = (currentCell.XPos * currentCell.Size) + _grid.Position.x + halfCellSize;
-                    var yPos = (currentCell.YPos * currentCell.Size) + _grid.Position.y + halfCellSize;
-                    xPos -= _grid.Width * halfCellSize;
-                    yPos -= _grid.Height * halfCellSize;
+                    var xPos = (currentCell.XPos * currentCell.Size) + _localGrid.Position.x + halfCellSize;
+                    var yPos = (currentCell.YPos * currentCell.Size) + _localGrid.Position.y + halfCellSize;
+                    xPos -= _localGrid.Width * halfCellSize;
+                    yPos -= _localGrid.Height * halfCellSize;
                     
                     var position = new Vector3(xPos, yPos, 0);
                     var size = new Vector3(cellSize, cellSize, 0);
