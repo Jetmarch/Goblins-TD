@@ -64,40 +64,5 @@ namespace Game.GameEngine.GridSystem
             if (gridX < 0 || gridX >= width || gridY < 0 || gridY >= height) return false;
             return true;
         }
-        
-        // public bool IsGridInBounds(Grid grid)
-        // {
-        //     foreach (var cell in grid.Cells)
-        //     {
-        //         if(!IsCellInBounds(cell)) return false;
-        //     }
-        //     
-        //     return true;
-        // }
-        //
-        // private bool IsCellInBounds(Cell cell)
-        // {
-        //     //TODO: Link cell coords to world coords
-        //     var centeredXPosition = _position.x - _widthOffset;
-        //     var centeredYPosition = _position.y - _heightOffset;
-        //     
-        //     if (!CheckBounds(centeredXPosition, centeredYPosition,
-        //             _width * _cellSize,
-        //             _height * _cellSize,
-        //             cell.XPos, cell.YPos))
-        //     {
-        //         Debug.LogWarning("Out of bounds");
-        //         return false;
-        //     }
-        //
-        //     return true;
-        // }
-        
-        // //TODO: Move to extensions or utils
-        // private static bool CheckBounds(float aX, float aY, float aWidth, float aHeight, float bX, float bY)
-        // {
-        //     return (bX > aX && bX < aX + aWidth)
-        //                    && (bY > aY && bY < aY + aHeight);
-        // }
     }
 }

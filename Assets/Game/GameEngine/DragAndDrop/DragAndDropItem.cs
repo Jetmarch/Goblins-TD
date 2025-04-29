@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,13 +23,14 @@ namespace Game.GameEngine.DragAndDrop
         private Grid _localGrid;
         
         private Camera _camera;
+
+        private List<Cell> _possibleTargetCells;
         
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
-            
             _camera = Camera.main;
-
+            _possibleTargetCells = new List<Cell>();
             ConstructGrid();
         }
         
@@ -50,13 +52,15 @@ namespace Game.GameEngine.DragAndDrop
         public void OnDrag(PointerEventData eventData)
         {
             _rectTransform.anchoredPosition += eventData.delta;
+
             
             var worldPoint = _camera.ScreenToWorldPoint(eventData.position);
             
-            Debug.Log($"World point {worldPoint}");
+            
             _localGrid.SetPosition(worldPoint);
             
             var globalGrid = _globalGridManager.Grid;
+            _possibleTargetCells.Clear();
             foreach (var cell in globalGrid.Cells)
             {
                 cell.SetBusy(false);
@@ -68,13 +72,13 @@ namespace Game.GameEngine.DragAndDrop
                 var cellWorldPositionX = cell.XPos * cell.Size + _localGrid.Position.x ;
                 var cellWorldPositionY = cell.YPos * cell.Size + _localGrid.Position.y ;
                 var cellWorldPosition = new Vector2(cellWorldPositionX, cellWorldPositionY);
-                Debug.Log($"Cell {cell.XPos}, {cell.YPos}, World {cellWorldPosition}");
+                
                 var globalGridCell = globalGrid.GetCellByWorldPosition(cellWorldPosition);
                 if (globalGridCell != null && !globalGridCell.IsBusy)
                 {
                     cell.SetBusy(true);
                     globalGridCell.SetBusy(true);
-                    Debug.Log($"Snapped global grid cell {globalGridCell.XPos}, {globalGridCell.YPos}");
+                    _possibleTargetCells.Add(globalGridCell);
                 }
                 else
                 {
@@ -89,10 +93,16 @@ namespace Game.GameEngine.DragAndDrop
         {
             Debug.Log("OnEndDrag");
             _showGrid = false;
+
+            if (_possibleTargetCells.Count == _localGrid.Cells.Length)
+            {
+                Debug.Log("Can place on grid");
+            }
         }
         
         private void OnDrawGizmos()
         {
+            
             if (!_showGrid) return;
             
             if (_localGrid == null) return;

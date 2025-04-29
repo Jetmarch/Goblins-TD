@@ -39,6 +39,7 @@ namespace Game.GameEngine.GridSystem
         
         private void OnDrawGizmos()
         {
+            
             if (!_showGrid) return;
             
             if (_grid == null) return;
