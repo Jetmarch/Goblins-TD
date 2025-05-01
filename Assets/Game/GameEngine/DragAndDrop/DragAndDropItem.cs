@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,8 @@ namespace Game.GameEngine.DragAndDrop
 {
     public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        [SerializeField] private GameObject _towerPrefab;
+        [SerializeField] private Transform _towerParent;
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private GridManager _globalGridManager;
 
@@ -61,10 +64,6 @@ namespace Game.GameEngine.DragAndDrop
             
             var globalGrid = _globalGridManager.Grid;
             _possibleTargetCells.Clear();
-            foreach (var cell in globalGrid.Cells)
-            {
-                cell.SetBusy(false);
-            }
 
             
             foreach (var cell in _localGrid.Cells)
@@ -76,17 +75,9 @@ namespace Game.GameEngine.DragAndDrop
                 var globalGridCell = globalGrid.GetCellByWorldPosition(cellWorldPosition);
                 if (globalGridCell != null && !globalGridCell.IsBusy)
                 {
-                    cell.SetBusy(true);
-                    globalGridCell.SetBusy(true);
                     _possibleTargetCells.Add(globalGridCell);
                 }
-                else
-                {
-                    cell.SetBusy(false);
-                }
             }
-
-            
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -96,8 +87,27 @@ namespace Game.GameEngine.DragAndDrop
 
             if (_possibleTargetCells.Count == _localGrid.Cells.Length)
             {
-                Debug.Log("Can place on grid");
+
+                var towerPosition = GetCenterOfCells(_possibleTargetCells, _globalGridManager.Grid.Position);
+                Debug.Log($"towerPosition: {towerPosition}");
+                var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);
+                
+
+                foreach (var gridCell in _possibleTargetCells)
+                {
+                    gridCell.SetBusy(true);
+                }
+
+                _possibleTargetCells.Clear();
             }
+        }
+
+        private Vector2 GetCenterOfCells(List<Cell> cells, Vector2 gridPosition = default)
+        {
+            var centerX = cells.Average(cell => cell.XPos * cell.Size + gridPosition.x);
+            var centerY = cells.Average(cell => cell.YPos * cell.Size + gridPosition.y);
+            
+            return new Vector2(centerX, centerY);
         }
         
         private void OnDrawGizmos()

@@ -18,7 +18,8 @@ namespace Game.GameEngine.GridSystem
         private Camera _camera;
         
         #region Unity Callbacks
-        private void Start()
+
+        private void Awake()
         {
             ConstructGrid();
             _camera = Camera.main;
@@ -26,14 +27,6 @@ namespace Game.GameEngine.GridSystem
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-
-                var cell = _grid.GetCellByWorldPosition(worldPoint);
-                cell?.SetBusy(!cell.IsBusy);
-            }
-            
             _grid.SetPosition(_gridPosition.position);
         }
         
