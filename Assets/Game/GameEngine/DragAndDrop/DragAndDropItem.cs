@@ -34,7 +34,6 @@ namespace Game.GameEngine.DragAndDrop
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log("OnBeginDrag");
             _towerGridManager.ShowGrid();
             _canvasGroup.alpha = _onDragAlpha;
             _gridView.Show();
@@ -61,7 +60,6 @@ namespace Game.GameEngine.DragAndDrop
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            Debug.Log("OnEndDrag");
             _towerGridManager.HideGrid();
             _canvasGroup.alpha = 1f;
             _gridView.Hide();
