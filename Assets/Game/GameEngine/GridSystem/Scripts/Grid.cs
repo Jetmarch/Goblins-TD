@@ -6,6 +6,7 @@ namespace Game.GameEngine.GridSystem
     {
         public Cell[,] Cells => _cells;
         public Vector2 Position => _position;
+        public Vector2 CellGap => _cellGap;
         public int Width => _width;
         public int Height => _height;
         public float CellSize => _cellSize;
@@ -16,22 +17,35 @@ namespace Game.GameEngine.GridSystem
         private readonly int _width;
         private readonly int _height;
         private readonly float _cellSize;
+        private readonly Vector2 _cellGap;
         
-        public Grid(Vector2 position, int width, int height, float cellSize)
+        public Grid(Vector2 position, int width, int height, float cellSize, Vector2 cellGap)
         {
             _position = position;
             _width = width;
             _height = height;
             _cellSize = cellSize;
             _cells = new Cell[width, height];
-            
+            _cellGap = cellGap;
+
+            ConstructGrid();
+        }
+
+        private void ConstructGrid()
+        {
+            var currentXGap = 0f;
+            var currentYGap = 0f;
             for (int x = 0; x < _width; x++)
             {
                 for (int y = 0; y < _height; y++)
                 {
-                    var cell = new Cell(x, y, _cellSize);
+                    var cell = new Cell(x, y, x + currentXGap, y + currentYGap, _cellSize);
                     _cells[x, y] = cell;
+                    currentYGap += _cellGap.y;
                 }
+
+                currentYGap = 0f;
+                currentXGap += _cellGap.x;
             }
         }
 
@@ -54,8 +68,8 @@ namespace Game.GameEngine.GridSystem
 
         private void GetGridPosition(Vector2 worldPosition, out int gridX, out int gridY)
         {
-            gridX = Mathf.FloorToInt((worldPosition.x - _position.x) / _cellSize);
-            gridY = Mathf.FloorToInt((worldPosition.y - _position.y) / _cellSize);
+            gridX = Mathf.FloorToInt((worldPosition.x - _position.x - _cellGap.x) / _cellSize);
+            gridY = Mathf.FloorToInt((worldPosition.y - _position.y - _cellGap.y) / _cellSize);
         }
         
         //TODO: Move to extensions or utils

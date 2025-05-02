@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3397003231046563952}
   - component: {fileID: 7857344069320775886}
+  - component: {fileID: 7614101548005516051}
   m_Layer: 0
   m_Name: GridCell
   m_TagString: Untagged
@@ -87,3 +88,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7614101548005516051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409866363748963526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cb6dd3d0d6442ab3cdd7646bc79c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightColor: {r: 0.438257, g: 0.8867924, b: 0.4308473, a: 0.2509804}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 0.2509804}

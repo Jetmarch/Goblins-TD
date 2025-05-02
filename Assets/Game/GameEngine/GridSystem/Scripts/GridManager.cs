@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game.GameEngine.GridSystem
@@ -7,71 +6,49 @@ namespace Game.GameEngine.GridSystem
     {
         public Grid Grid => _grid;
         
-        [SerializeField] private Transform _gridPosition;   
         [SerializeField] private int _gridWidth;
         [SerializeField] private int _gridHeight;
         [SerializeField] private float _cellSize;
         
         [SerializeField] private bool _showGrid;
+        [SerializeField] private Vector2 _cellGap;
         
         private Grid _grid;
-        private Camera _camera;
-        
         #region Unity Callbacks
 
         private void Awake()
         {
             ConstructGrid();
-            _camera = Camera.main;
-        }
-
-        private void Update()
-        {
-            _grid.SetPosition(_gridPosition.position);
         }
         
         private void OnDrawGizmos()
         {
-            
             if (!_showGrid) return;
             
             if (_grid == null) return;
-            Gizmos.color = Color.green;
-            
-            for (int x = 0; x < _gridWidth; x++)
-            {
-                for (int y = 0; y < _gridHeight; y++)
-                {
-                    var currentCell = _grid.Cells[x, y];
-                    var cellSize = currentCell.Size;
-                    var halfCellSize = cellSize * 0.5f;
-                    var xPos = (currentCell.XPos * currentCell.Size) + _grid.Position.x + halfCellSize;
-                    var yPos = (currentCell.YPos * currentCell.Size) + _grid.Position.y + halfCellSize;
-                    // xPos -= _grid.Width * halfCellSize;
-                    // yPos -= _grid.Height * halfCellSize;
-                    
-                    var position = new Vector3(xPos, yPos, 0);
-                    var size = new Vector3(cellSize, cellSize, 0);
-
-                    if (currentCell.IsBusy)
-                    {
-                        Gizmos.DrawCube(position, size);
-                    }
-                    else
-                    {
-                        Gizmos.DrawWireCube(position, size);
-                    }
-                }
-            }
+            GridUseCases.DebugDrawGrid(_grid);
         }
         #endregion
 
         [ContextMenu("ConstructGrid")]
         public void ConstructGrid()
         {
-            var xPos = _gridPosition.position.x;
-            var yPos = _gridPosition.position.y;
-            _grid = new Grid(_gridPosition.position, _gridWidth, _gridHeight, _cellSize);
+            _grid = new Grid(transform.position, _gridWidth, _gridHeight, _cellSize, _cellGap);
+        }
+
+        public void ShowGrid()
+        {
+            _showGrid = true;
+        }
+
+        public void HideGrid()
+        {
+            _showGrid = false;
+        }
+
+        public void UpdateGridWorldPosition(Vector3 position)
+        {
+            _grid.SetPosition(position);
         }
     }
 }

@@ -1,29 +1,20 @@
 using System.Collections.Generic;
-using System.Linq;
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using Grid = Game.GameEngine.GridSystem.Grid;
 
 namespace Game.GameEngine.DragAndDrop
 {
+    [RequireComponent(typeof(GridManager))]
     public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private GameObject _towerPrefab;
         [SerializeField] private Transform _towerParent;
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private GridManager _globalGridManager;
-
-        [SerializeField] private int _gridWidth = 2;
-        [SerializeField] private int _gridHeight = 2;
-        [SerializeField] private float _cellSize = 0.5f;
+        [SerializeField] private GridManager _towerGridManager;
         
-        [SerializeField] private float _snapDistance = 0.2f;
-        
-        private bool _showGrid = false;
-        
-        private Grid _localGrid;
+        [SerializeField] private GridView _gridView;
         
         private Camera _camera;
 
@@ -32,64 +23,47 @@ namespace Game.GameEngine.DragAndDrop
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
+            _towerGridManager = GetComponent<GridManager>();
             _camera = Camera.main;
             _possibleTargetCells = new List<Cell>();
-            ConstructGrid();
         }
-        
-        [ContextMenu("ConstructGrid")]
-        public void ConstructGrid()
-        {
-            var xPos = transform.position.x;
-            var yPos = transform.position.y;
-            _localGrid = new Grid(transform.position, _gridWidth, _gridHeight, _cellSize);
-        }
-        
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             Debug.Log("OnBeginDrag");
-            _showGrid = true;
+            _towerGridManager.ShowGrid();
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             _rectTransform.anchoredPosition += eventData.delta;
 
-            
             var worldPoint = _camera.ScreenToWorldPoint(eventData.position);
             
+            Debug.Log(worldPoint);
             
-            _localGrid.SetPosition(worldPoint);
+            _towerGridManager.UpdateGridWorldPosition(worldPoint);
             
             var globalGrid = _globalGridManager.Grid;
-            _possibleTargetCells.Clear();
-
             
-            foreach (var cell in _localGrid.Cells)
+            _gridView.UnhighlightAllCells();
+            
+            GridUseCases.GetPossibleTargetCellsForBuilding(_towerGridManager.Grid, globalGrid, _possibleTargetCells);
+            foreach (var cell in _possibleTargetCells)
             {
-                var cellWorldPositionX = cell.XPos * cell.Size + _localGrid.Position.x ;
-                var cellWorldPositionY = cell.YPos * cell.Size + _localGrid.Position.y ;
-                var cellWorldPosition = new Vector2(cellWorldPositionX, cellWorldPositionY);
-                
-                var globalGridCell = globalGrid.GetCellByWorldPosition(cellWorldPosition);
-                if (globalGridCell != null && !globalGridCell.IsBusy)
-                {
-                    _possibleTargetCells.Add(globalGridCell);
-                }
+                _gridView.HighlightCell(cell.GridPosX, cell.GridPosY);
             }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             Debug.Log("OnEndDrag");
-            _showGrid = false;
+            _towerGridManager.HideGrid();
 
-            if (_possibleTargetCells.Count == _localGrid.Cells.Length)
+            if (_possibleTargetCells.Count == _towerGridManager.Grid.Cells.Length)
             {
-
-                var towerPosition = GetCenterOfCells(_possibleTargetCells, _globalGridManager.Grid.Position);
-                Debug.Log($"towerPosition: {towerPosition}");
+                
+                var towerPosition = GridUseCases.GetCenterOfCells(_possibleTargetCells, _globalGridManager.Grid.Position);
                 var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);
                 
 
@@ -99,49 +73,6 @@ namespace Game.GameEngine.DragAndDrop
                 }
 
                 _possibleTargetCells.Clear();
-            }
-        }
-
-        private Vector2 GetCenterOfCells(List<Cell> cells, Vector2 gridPosition = default)
-        {
-            var centerX = cells.Average(cell => cell.XPos * cell.Size + gridPosition.x);
-            var centerY = cells.Average(cell => cell.YPos * cell.Size + gridPosition.y);
-            
-            return new Vector2(centerX, centerY);
-        }
-        
-        private void OnDrawGizmos()
-        {
-            
-            if (!_showGrid) return;
-            
-            if (_localGrid == null) return;
-            Gizmos.color = Color.green;
-            
-            for (int x = 0; x < _gridWidth; x++)
-            {
-                for (int y = 0; y < _gridHeight; y++)
-                {
-                    var currentCell = _localGrid.Cells[x, y];
-                    var cellSize = currentCell.Size;
-                    var halfCellSize = cellSize * 0.5f;
-                    var xPos = (currentCell.XPos * currentCell.Size) + _localGrid.Position.x + halfCellSize;
-                    var yPos = (currentCell.YPos * currentCell.Size) + _localGrid.Position.y + halfCellSize;
-                    xPos -= _localGrid.Width * halfCellSize;
-                    yPos -= _localGrid.Height * halfCellSize;
-                    
-                    var position = new Vector3(xPos, yPos, 0);
-                    var size = new Vector3(cellSize, cellSize, 0);
-
-                    if (currentCell.IsBusy)
-                    {
-                        Gizmos.DrawCube(position, size);
-                    }
-                    else
-                    {
-                        Gizmos.DrawWireCube(position, size);
-                    }
-                }
             }
         }
     }
