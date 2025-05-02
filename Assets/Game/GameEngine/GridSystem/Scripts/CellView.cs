@@ -5,24 +5,32 @@ namespace Game.GameEngine.GridSystem
     [RequireComponent(typeof(SpriteRenderer))]
     public class CellView : MonoBehaviour
     {
-        [SerializeField] private Color _highlightColor;
+        [SerializeField] private Color _highlightColorEmpty;
+        [SerializeField] private Color _highlightColorBusy;
         [SerializeField] private Color _defaultColor;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
+        private bool _isBusy;
         
-        private SpriteRenderer _spriteRenderer;
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        [ContextMenu("Highlight")]
+        
         public void Highlight()
         {
-            _spriteRenderer.color = _highlightColor;
+            _spriteRenderer.color = _isBusy ? _highlightColorBusy : _highlightColorEmpty;
         }
-        [ContextMenu("Unhighlight")]
         public void Unhighlight()
         {
             _spriteRenderer.color = _defaultColor;
         }
+
+        public void SetBusy(bool isBusy)
+        {
+            _isBusy = isBusy;
+        }
+        
         public void Show()
         {
             gameObject.SetActive(true);

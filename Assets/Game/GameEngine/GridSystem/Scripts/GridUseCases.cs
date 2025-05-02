@@ -14,41 +14,43 @@ namespace Game.GameEngine.GridSystem
             return new Vector2(centerX, centerY);
         }
 
-        public static void GetPossibleTargetCellsForBuilding(Grid buildingGrid, Grid placementGrid, List<Cell> possibleTargetCells)
+        public static void GetPossibleTargetCellsForBuilding(Grid buildingGrid, Grid placementGrid,
+            List<Cell> possibleTargetCells)
         {
             possibleTargetCells.Clear();
-            
-            foreach (var cell in buildingGrid.Cells)
+
+            var firstBuildingCell = buildingGrid.GetCell(0, 0);
+            var firstBuildingCellPosition = GetCellWorldPosition(firstBuildingCell, buildingGrid.Position);
+
+            var firstPlacementCell = placementGrid.GetCellByWorldPosition(firstBuildingCellPosition);
+
+            if (firstPlacementCell == null) return;
+
+            for (int x = 0; x < buildingGrid.Width; x++)
             {
-                var cellWorldPositionX = cell.XPos * cell.Size + buildingGrid.Position.x ;
-                var cellWorldPositionY = cell.YPos * cell.Size + buildingGrid.Position.y ;
-                var cellWorldPosition = new Vector2(cellWorldPositionX, cellWorldPositionY);
-                
-                var globalGridCell = placementGrid.GetCellByWorldPosition(cellWorldPosition);
-                if (globalGridCell != null && !globalGridCell.IsBusy)
+                for (int y = 0; y < buildingGrid.Height; y++)
                 {
-                    possibleTargetCells.Add(globalGridCell);
+                    var possiblePlacementCell =
+                        placementGrid.GetCell(x + firstPlacementCell.GridPosX, y + firstPlacementCell.GridPosY);
+                    if (possiblePlacementCell != null)
+                    {
+                        possibleTargetCells.Add(possiblePlacementCell);
+                    }
                 }
             }
         }
 
-        public static bool CanBuild(Grid buildingGrid, Grid placementGrid)
+        private static Vector2 GetCellWorldPosition(Cell cell, Vector2 gridPosition = default)
         {
-            int countOfPossibleTargetCells = 0;
-            foreach (var cell in buildingGrid.Cells)
-            {
-                var cellWorldPositionX = cell.XPos * cell.Size + buildingGrid.Position.x ;
-                var cellWorldPositionY = cell.YPos * cell.Size + buildingGrid.Position.y ;
-                var cellWorldPosition = new Vector2(cellWorldPositionX, cellWorldPositionY);
-                
-                var globalGridCell = placementGrid.GetCellByWorldPosition(cellWorldPosition);
-                if (globalGridCell != null && !globalGridCell.IsBusy)
-                {
-                    countOfPossibleTargetCells++;
-                }
-            }
+            var cellWorldPositionX = cell.GridPosX * cell.Size + gridPosition.x;
+            var cellWorldPositionY = cell.GridPosY * cell.Size + gridPosition.y;
+            return new Vector2(cellWorldPositionX, cellWorldPositionY);
+        }
 
-            return countOfPossibleTargetCells >= buildingGrid.Cells.Length;
+        public static bool CanBuild(List<Cell> possibleTargetCells, Grid buildingGrid)
+        {
+            possibleTargetCells.RemoveAll(cell => cell.IsBusy);
+            return possibleTargetCells.Count == buildingGrid.Cells.Length;
         }
         
 #if UNITY_EDITOR

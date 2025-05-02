@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace Game.GameEngine.GridSystem
         [SerializeField] private GridManager _gridManager;
         private CellView[,] _gridCells;
         
-        private void Start()
+        private void Awake()
         {
             _gridCells = new CellView[_gridManager.Grid.Width, _gridManager.Grid.Height];
             
@@ -27,6 +28,11 @@ namespace Game.GameEngine.GridSystem
                     _gridCells[x,y] = gridCell;
                 }
             }
+        }
+
+        private void Start()
+        {
+            Hide();
         }
 
         [ContextMenu("Show")]
@@ -64,9 +70,17 @@ namespace Game.GameEngine.GridSystem
             }
         }
 
+        public void SetCellBusy(int x, int y, bool isBusy)
+        {
+            var cellView = GetCell(x, y);
+            cellView?.SetBusy(isBusy);
+            var cell = _gridManager.Grid.GetCell(x, y);
+            cell?.SetBusy(isBusy);
+        }
+
         private CellView GetCell(int x, int y)
         {
-            if (x < 0 || x >= _gridManager.Grid.Width || y < 0 || y >= _gridManager.Grid.Height) return null; 
+            if (x < 0 || x >= _gridManager.Grid.Width || y < 0 || y >= _gridManager.Grid.Height) return default; 
             return _gridCells[x, y];
         }
     }

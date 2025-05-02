@@ -100,5 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1cb6dd3d0d6442ab3cdd7646bc79c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightColor: {r: 0.438257, g: 0.8867924, b: 0.4308473, a: 0.2509804}
+  _highlightColorEmpty: {r: 0.3413903, g: 0.764151, b: 0.3135903, a: 0.2509804}
+  _highlightColorBusy: {r: 0.7264151, g: 0.33236918, b: 0.33236918, a: 0.2509804}
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+  _spriteRenderer: {fileID: 7857344069320775886}

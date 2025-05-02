@@ -61,7 +61,7 @@ namespace Game.GameEngine.GridSystem
             return GetCell(gridX, gridY);
         }
 
-        private Cell GetCell(int x, int y)
+        public Cell GetCell(int x, int y)
         {
             return !CheckBounds(x, y, _width, _height) ? default : _cells[x, y];
         }
