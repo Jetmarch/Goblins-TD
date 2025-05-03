@@ -2606,8 +2606,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startNextWaveButton: {fileID: 1069876638}
-  _waveCounter: {fileID: 0}
-  _waveManager: {fileID: 0}
+  _waveCounter: {fileID: 77099715}
+  _waveManager: {fileID: 1598557130}
 --- !u!1 &1691777403
 GameObject:
   m_ObjectHideFlags: 0

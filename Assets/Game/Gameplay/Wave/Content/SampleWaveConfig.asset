@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: SampleWaveConfig
   m_EditorClassIdentifier: 
   _waves:
-  - _waveDuration: 45
+  - _waveDuration: 10
     _spawnInterval: 1
     _enemySpawnData:
     - EnemyId: FleshCrawler
       Count: 10
     - EnemyId: FleshCrawler
       Count: 15
-  - _waveDuration: 45
+  - _waveDuration: 10
     _spawnInterval: 1
     _enemySpawnData:
     - EnemyId: FleshCrawler
       Count: 2
     - EnemyId: FleshCrawler
       Count: 2
-  - _waveDuration: 45
+  - _waveDuration: 10
     _spawnInterval: 1
     _enemySpawnData:
     - EnemyId: FleshCrawler
       Count: 5
     - EnemyId: FleshCrawler
       Count: 5
-  - _waveDuration: 45
+  - _waveDuration: 10
     _spawnInterval: 1
     _enemySpawnData:
     - EnemyId: FleshCrawler
