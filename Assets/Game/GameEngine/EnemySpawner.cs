@@ -15,17 +15,22 @@ namespace Game.GameEngine
 
         [SerializeField] private List<GameObject> _spawnedEnemies;
         [SerializeField] private int _maxEnemies = 32;
+        
+        [SerializeField] private bool _isSpawning;
 
         private void Start()
         {
             _spawnedEnemies = new List<GameObject>();
             StartCoroutine(SpawnEnemyRoutine());
+
+            _isSpawning = false;
         }
 
         private IEnumerator SpawnEnemyRoutine()
         {
             while (true)
             {
+                yield return new WaitUntil(() => _isSpawning);
                 yield return new WaitForSeconds(_spawnInterval);
                 ClearDestroyedEnemies();
                 if (_spawnedEnemies.Count >= _maxEnemies)
@@ -50,6 +55,11 @@ namespace Game.GameEngine
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(_spawnPoint.position, _spawnRadius);
+        }
+
+        public void SetSpawningState(bool isSpawning)
+        {
+            _isSpawning = isSpawning;
         }
     }
 }

@@ -1,5 +1,5 @@
+using Game.App;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Game.UI.MainMenu
@@ -11,25 +11,13 @@ namespace Game.UI.MainMenu
 
         private void Start()
         {
+            _button = GetComponentInChildren<Button>();
             _button.onClick.AddListener(LoadLevel);
         }
 
         private void LoadLevel()
         {
-            var asyncOperation = SceneManager.LoadSceneAsync(_levelName, LoadSceneMode.Single);
-            if (asyncOperation != null)
-            {
-                asyncOperation.completed += OnSceneLoaded;
-            }
-            else
-            {
-                throw new UnityException("Scene not found: " + _levelName);
-            }
-        }
-
-        private void OnSceneLoaded(AsyncOperation obj)
-        {
-            
+            LoadingManager.LoadScene(_levelName);
         }
     }
 }
