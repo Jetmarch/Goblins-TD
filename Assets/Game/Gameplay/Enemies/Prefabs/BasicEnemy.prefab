@@ -225,7 +225,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -306,6 +306,9 @@ MonoBehaviour:
     m_Center: {x: 0, y: 1, z: 0}
     m_Extent: {x: 3, y: 7, z: 1}
   _healthBarView: {fileID: 6448517752809111856}
+  _gridManager: {fileID: 0}
+  _playerBase: {fileID: 0}
+  _currentPathIndex: 0
 --- !u!1 &8688042731453079908
 GameObject:
   m_ObjectHideFlags: 0

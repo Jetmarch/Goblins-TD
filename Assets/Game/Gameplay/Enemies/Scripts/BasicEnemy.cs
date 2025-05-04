@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Game.GameEngine;
+using Game.GameEngine.GridSystem;
+using Game.GameEngine.Pathfinding;
 using Game.UI;
 using UnityEngine;
 
@@ -9,7 +14,6 @@ namespace Game.Gameplay
     {
         [SerializeField] private float _speed = 1f;
         [SerializeField] private HealthStorage _healthStorage;
-        [SerializeField] private Vector2 _direction;
         
         [SerializeField] private Rigidbody2D _rigidbody;
         
@@ -17,11 +21,47 @@ namespace Game.Gameplay
         
         [SerializeField] private EntityHealthBarView _healthBarView;
         
+        [SerializeField] private GridManager _gridManager;
+
+        [SerializeField] private PlayerBase _playerBase;
+        
+        [SerializeField] private int _currentPathIndex;
+
+        private List<ICell> _path;
+        private Pathfinder _pathfinder;
+
+        private ICell _startPoint;
+        private ICell _endPoint;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _healthStorage.Reset();
+            _path = new List<ICell>();
+            
+            _gridManager = GameObject.Find("TowerGrid").GetComponent<GridManager>();
+            _playerBase = FindFirstObjectByType<PlayerBase>();
+
+            _pathfinder = new Pathfinder(new AStarPathfinding());
+            var startPoint = _gridManager.Grid.GetCellByWorldPositionOrDefault(transform.position);
+            if (startPoint == default)
+            {
+                throw new ApplicationException("Enemy is not in pathfinding grid");
+            }
+            
+            var endPoint = _gridManager.Grid.GetCellByWorldPositionOrDefault(_playerBase.transform.position);
+            if (endPoint == default)
+            {
+                throw new ApplicationException("Player base is not in pathfinding grid");
+            }
+
+            if (!_pathfinder.FindPath(startPoint, endPoint, _gridManager.Grid, out _path))
+            {
+                throw new ApplicationException($"Path not found for {gameObject.name}");
+            }
+
+            _currentPathIndex = _path.Count - 1;
+            
         }
 
         private void OnEnable()
@@ -38,11 +78,21 @@ namespace Game.Gameplay
 
         private void FixedUpdate()
         {
-            _rigidbody.MovePosition(_rigidbody.position + _direction * (_speed * Time.fixedDeltaTime));
-
-            if (_deathBounds.Contains(_rigidbody.position)) return;
+            var pathPoint = _path.ElementAt(_currentPathIndex);
             
-            Destroy(gameObject);
+            var desiredPosition = new Vector2(pathPoint.WorldX * pathPoint.Size + _gridManager.Grid.Position.x, pathPoint.WorldY* pathPoint.Size + _gridManager.Grid.Position.y);
+            var currentPosition = _rigidbody.position;
+            
+            Debug.Log($"Desired position: {desiredPosition}");
+            
+            
+            var direction = desiredPosition - currentPosition;
+            
+            _rigidbody.MovePosition(_rigidbody.position + direction * (_speed * Time.fixedDeltaTime));
+            if (Vector2.Distance(desiredPosition, currentPosition) <= 0.1f)
+            {
+                _currentPathIndex--;
+            }
         }
 
         public void TakeDamage(float damage)
@@ -65,6 +115,17 @@ namespace Game.Gameplay
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(_deathBounds.center, _deathBounds.size);
+
+            Gizmos.color = Color.blue;
+
+            var cellVectors = new Vector3[_path.Count];
+            for(int i=0; i<_path.Count; i++)
+            {
+                var cellVector = new Vector3(_path[i].WorldX * _path[i].Size + _gridManager.Grid.Position.x, _path[i].WorldY * _path[i].Size + _gridManager.Grid.Position.y, 0);
+                cellVectors[i] = cellVector;
+            }
+
+            Gizmos.DrawLineStrip(cellVectors, false);
         }
     }
 }

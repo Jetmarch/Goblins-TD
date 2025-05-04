@@ -11,9 +11,9 @@ namespace Game.Gameplay.WaveSystem
         
         [SerializeField] private WaveDataConfig _config;
         [SerializeField] private WaveSpawner _waveSpawner;
+        [SerializeField] private int _currentWave;
         private WaveCounter _waveCounter;
 
-        private int _currentWave;
 
         private void Awake()
         {
@@ -28,7 +28,6 @@ namespace Game.Gameplay.WaveSystem
 
         public void NextWave()
         {
-            _currentWave++;
             if (_currentWave >= _config.Waves.Count)
             {
                 OnAllWavesComplete?.Invoke();
@@ -37,6 +36,7 @@ namespace Game.Gameplay.WaveSystem
             var nextWave = _config.Waves[_currentWave];
             _waveSpawner.AddWaveToSpawn(nextWave);
             _waveCounter.StartCounter(nextWave.WaveDuration);
+            _currentWave++;
             OnStartWave?.Invoke();
         }
 

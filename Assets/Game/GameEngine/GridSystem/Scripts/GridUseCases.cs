@@ -73,7 +73,7 @@ namespace Game.GameEngine.GridSystem
                     var position = new Vector3(xPos, yPos, 0);
                     var size = new Vector3(cellSize, cellSize, 0);
 
-                    if (currentCell.IsWalkable)
+                    if (!currentCell.IsWalkable)
                     {
                         Gizmos.DrawCube(position, size);
                     }
