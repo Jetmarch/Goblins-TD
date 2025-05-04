@@ -21,7 +21,7 @@ namespace Game.GameEngine.DragAndDrop
         
         private Camera _camera;
 
-        private List<Cell> _possibleTargetCells;
+        private List<ICell> _possibleTargetCells;
         
         private void Start()
         {
@@ -29,7 +29,7 @@ namespace Game.GameEngine.DragAndDrop
             _towerGridManager = GetComponent<GridManager>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _camera = Camera.main;
-            _possibleTargetCells = new List<Cell>();
+            _possibleTargetCells = new List<ICell>();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -54,7 +54,7 @@ namespace Game.GameEngine.DragAndDrop
             GridUseCases.GetPossibleTargetCellsForBuilding(_towerGridManager.Grid, globalGrid, _possibleTargetCells);
             foreach (var cell in _possibleTargetCells)
             {
-                _gridView.HighlightCell(cell.GridPosX, cell.GridPosY);
+                _gridView.HighlightCell(cell.GridX, cell.GridY);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Game.GameEngine.DragAndDrop
 
             foreach (var gridCell in _possibleTargetCells)
             {
-                _gridView.SetCellBusy(gridCell.GridPosX, gridCell.GridPosY, true);
+                _gridView.SetCellBusy(gridCell.GridX, gridCell.GridY, true);
             }
             _possibleTargetCells.Clear();
             

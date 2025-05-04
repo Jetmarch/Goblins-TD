@@ -22,7 +22,7 @@ namespace Game.GameEngine.GridSystem
                 for (int y = 0; y < _gridManager.Grid.Height; y++)
                 {
                     var cell = _gridManager.Grid.Cells[x, y];
-                    var cellPosition = new Vector3(cell.XPos * cell.Size + gridXPos, cell.YPos * cell.Size + gridYPos, 0f);
+                    var cellPosition = new Vector3(cell.WorldX * cell.Size + gridXPos, cell.WorldY * cell.Size + gridYPos, 0f);
                     var gridCell = Instantiate(_gridCellPrefab, cellPosition, _gridCellPrefab.transform.rotation, _gridCellParent).GetComponent<CellView>();
                     gridCell.transform.localScale = new Vector3(cell.Size, cell.Size, 1f);
                     _gridCells[x,y] = gridCell;

@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Game.GameEngine.GridSystem
 {
-    public class Grid
+    public class Grid : IGrid
     {
-        public Cell[,] Cells => _cells;
+        public ICell[,] Cells => _cells;
         public Vector2 Position => _position;
         public Vector2 CellGap => _cellGap;
         public int Width => _width;
@@ -13,7 +13,7 @@ namespace Game.GameEngine.GridSystem
         
         private Vector2 _position;
         
-        private readonly Cell[,] _cells;
+        private readonly ICell[,] _cells;
         private readonly int _width;
         private readonly int _height;
         private readonly float _cellSize;
@@ -25,7 +25,7 @@ namespace Game.GameEngine.GridSystem
             _width = width;
             _height = height;
             _cellSize = cellSize;
-            _cells = new Cell[width, height];
+            _cells = new ICell[width, height];
             _cellGap = cellGap;
 
             ConstructGrid();
@@ -54,14 +54,14 @@ namespace Game.GameEngine.GridSystem
             _position = position;
         }
 
-        public Cell GetCellByWorldPosition(Vector2 worldPosition)
+        public ICell GetCellByWorldPositionOrDefault(Vector2 worldPosition)
         {
             GetGridPosition(worldPosition, out var gridX, out var gridY);
             
             return GetCell(gridX, gridY);
         }
 
-        public Cell GetCell(int x, int y)
+        public ICell GetCell(int x, int y)
         {
             return !CheckBounds(x, y, _width, _height) ? default : _cells[x, y];
         }
