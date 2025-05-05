@@ -6,10 +6,10 @@ namespace Game.GameEngine.GridSystem
 {
     public static class GridUseCases
     {
-        public static Vector2 GetCenterOfCells(List<ICell> cells, Vector2 gridPosition = default)
+        public static Vector2 GetCenterOfCells(List<ICell> cells)
         {
-            var centerX = cells.Average(cell => cell.WorldX * cell.Size + gridPosition.x);
-            var centerY = cells.Average(cell => cell.WorldY * cell.Size + gridPosition.y);
+            var centerX = cells.Average(cell => cell.WorldX);
+            var centerY = cells.Average(cell => cell.WorldY);
             
             return new Vector2(centerX, centerY);
         }
@@ -20,7 +20,7 @@ namespace Game.GameEngine.GridSystem
             possibleTargetCells.Clear();
 
             var firstBuildingCell = buildingGrid.GetCell(0, 0);
-            var firstBuildingCellPosition = GetCellWorldPosition(firstBuildingCell, buildingGrid.Position);
+            var firstBuildingCellPosition = GetCellWorldPosition(firstBuildingCell, buildingGrid.WorldPosition);
 
             var firstPlacementCell = placementGrid.GetCellByWorldPositionOrDefault(firstBuildingCellPosition);
 
@@ -65,8 +65,8 @@ namespace Game.GameEngine.GridSystem
                     var currentCell = grid.Cells[x, y];
                     var cellSize = currentCell.Size;
                     var halfCellSize = cellSize * 0.5f;
-                    var xPos = (currentCell.WorldX * currentCell.Size) + grid.Position.x;
-                    var yPos = (currentCell.WorldY * currentCell.Size) + grid.Position.y;
+                    var xPos = currentCell.WorldX;
+                    var yPos = currentCell.WorldY;
                     // xPos -= _localGrid.Width * halfCellSize;
                     // yPos -= _localGrid.Height * halfCellSize;
                     

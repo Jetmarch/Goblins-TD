@@ -66,7 +66,7 @@ namespace Game.GameEngine.DragAndDrop
 
             if (!GridUseCases.CanBuild(_possibleTargetCells, _towerGridManager.Grid)) return;
             
-            var towerPosition = GridUseCases.GetCenterOfCells(_possibleTargetCells, _globalGridManager.Grid.Position);
+            var towerPosition = GridUseCases.GetCenterOfCells(_possibleTargetCells);
             var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);
 
             foreach (var gridCell in _possibleTargetCells)

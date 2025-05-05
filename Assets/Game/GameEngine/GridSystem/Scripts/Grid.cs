@@ -5,23 +5,21 @@ namespace Game.GameEngine.GridSystem
     public class Grid : IGrid
     {
         public ICell[,] Cells => _cells;
-        public Vector2 Position => _position;
+        public Vector2 WorldPosition => _worldPosition;
         public Vector2 CellGap => _cellGap;
         public int Width => _width;
         public int Height => _height;
-        public float CellSize => _cellSize;
         
-        private Vector2 _position;
-        
+        private Vector2 _worldPosition;
         private readonly ICell[,] _cells;
         private readonly int _width;
         private readonly int _height;
         private readonly float _cellSize;
         private readonly Vector2 _cellGap;
         
-        public Grid(Vector2 position, int width, int height, float cellSize, Vector2 cellGap)
+        public Grid(Vector2 worldPosition, int width, int height, float cellSize, Vector2 cellGap)
         {
-            _position = position;
+            _worldPosition = worldPosition;
             _width = width;
             _height = height;
             _cellSize = cellSize;
@@ -30,7 +28,8 @@ namespace Game.GameEngine.GridSystem
 
             ConstructGrid();
         }
-
+        
+        //TODO: Create grid factory or smt like that
         private void ConstructGrid()
         {
             var currentXGap = 0f;
@@ -39,7 +38,7 @@ namespace Game.GameEngine.GridSystem
             {
                 for (int y = 0; y < _height; y++)
                 {
-                    var cell = new Cell(x, y, x + currentXGap, y + currentYGap, _cellSize);
+                    var cell = new Cell(this, x, y, x + currentXGap, y + currentYGap, _cellSize);
                     _cells[x, y] = cell;
                     currentYGap += _cellGap.y;
                 }
@@ -51,7 +50,7 @@ namespace Game.GameEngine.GridSystem
 
         public void SetPosition(Vector2 position)
         {
-            _position = position;
+            _worldPosition = position;
         }
 
         public ICell GetCellByWorldPositionOrDefault(Vector2 worldPosition)
@@ -68,8 +67,8 @@ namespace Game.GameEngine.GridSystem
 
         private void GetGridPosition(Vector2 worldPosition, out int gridX, out int gridY)
         {
-            gridX = Mathf.FloorToInt((worldPosition.x - _position.x - _cellGap.x) / _cellSize);
-            gridY = Mathf.FloorToInt((worldPosition.y - _position.y - _cellGap.y) / _cellSize);
+            gridX = Mathf.FloorToInt((worldPosition.x - _worldPosition.x - _cellGap.x) / _cellSize);
+            gridY = Mathf.FloorToInt((worldPosition.y - _worldPosition.y - _cellGap.y) / _cellSize);
         }
         
         //TODO: Move to extensions or utils

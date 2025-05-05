@@ -300,7 +300,6 @@ MonoBehaviour:
     _currentHealth: 0
     _maxHealth: 20
     _minHealth: 0
-  _direction: {x: 0, y: -1}
   _rigidbody: {fileID: 0}
   _deathBounds:
     m_Center: {x: 0, y: 1, z: 0}

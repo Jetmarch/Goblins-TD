@@ -80,7 +80,7 @@ namespace Game.Gameplay
         {
             var pathPoint = _path.ElementAt(_currentPathIndex);
             
-            var desiredPosition = new Vector2(pathPoint.WorldX * pathPoint.Size + _gridManager.Grid.Position.x, pathPoint.WorldY* pathPoint.Size + _gridManager.Grid.Position.y);
+            var desiredPosition = new Vector2(pathPoint.WorldX, pathPoint.WorldY);
             var currentPosition = _rigidbody.position;
             
             Debug.Log($"Desired position: {desiredPosition}");
@@ -121,7 +121,7 @@ namespace Game.Gameplay
             var cellVectors = new Vector3[_path.Count];
             for(int i=0; i<_path.Count; i++)
             {
-                var cellVector = new Vector3(_path[i].WorldX * _path[i].Size + _gridManager.Grid.Position.x, _path[i].WorldY * _path[i].Size + _gridManager.Grid.Position.y, 0);
+                var cellVector = new Vector3(_path[i].WorldX * _path[i].Size + _gridManager.Grid.WorldPosition.x, _path[i].WorldY * _path[i].Size + _gridManager.Grid.WorldPosition.y, 0);
                 cellVectors[i] = cellVector;
             }
 

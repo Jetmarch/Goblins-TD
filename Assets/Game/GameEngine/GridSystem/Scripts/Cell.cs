@@ -11,8 +11,8 @@ namespace Game.GameEngine.GridSystem
         public bool IsWalkable => !IsBusy;
         
         public float Size => _size;
-        public float WorldX => _worldX;
-        public float WorldY => _worldY;
+        public float WorldX => _worldX * _size + _parent.WorldPosition.x;
+        public float WorldY => _worldY * _size + _parent.WorldPosition.y;
         public int GridPosX => _gridPosX;
         public int GridPosY => _gridPosY;
         public bool IsBusy => _isBusy;
@@ -25,8 +25,11 @@ namespace Game.GameEngine.GridSystem
 
         private bool _isBusy;
 
-        public Cell(int gridPosX, int gridPosY, float worldX, float worldY, float size)
+        private IGrid _parent;
+
+        public Cell(IGrid parent, int gridPosX, int gridPosY, float worldX, float worldY, float size)
         {
+            _parent = parent;
             _gridPosX = gridPosX;
             _gridPosY = gridPosY;
             _worldX = worldX;

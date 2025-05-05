@@ -15,14 +15,14 @@ namespace Game.GameEngine.GridSystem
         {
             _gridCells = new CellView[_gridManager.Grid.Width, _gridManager.Grid.Height];
             
-            var gridXPos = _gridManager.Grid.Position.x;
-            var gridYPos = _gridManager.Grid.Position.y;
+            var gridXPos = _gridManager.Grid.WorldPosition.x;
+            var gridYPos = _gridManager.Grid.WorldPosition.y;
             for (int x = 0; x < _gridManager.Grid.Width; x++)
             {
                 for (int y = 0; y < _gridManager.Grid.Height; y++)
                 {
                     var cell = _gridManager.Grid.Cells[x, y];
-                    var cellPosition = new Vector3(cell.WorldX * cell.Size + gridXPos, cell.WorldY * cell.Size + gridYPos, 0f);
+                    var cellPosition = new Vector3(cell.WorldX, cell.WorldY, 0f);
                     var gridCell = Instantiate(_gridCellPrefab, cellPosition, _gridCellPrefab.transform.rotation, _gridCellParent).GetComponent<CellView>();
                     gridCell.transform.localScale = new Vector3(cell.Size, cell.Size, 1f);
                     _gridCells[x,y] = gridCell;
