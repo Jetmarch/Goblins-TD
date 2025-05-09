@@ -1,30 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Gameplay.Buildings
 {
     [Serializable]
-    public class TowerModel
+    public class TowerData
     {
         public float Damage => _damage;
         public float AttackSpeed => _attackSpeed;
-        public float Range => _range;
+        public float AttackRadius => _attackRadius;
         public float RotateSpeed => _rotateSpeed;
         public float CritChance => _critChance;
+        public float AttackAngle => _attackAngle;
+        public string ProjectileId => _projectileId;
         
         [SerializeField] private float _damage;
         [SerializeField] private float _attackSpeed;
-        [SerializeField] private float _range;
+        [FormerlySerializedAs("_range")] [SerializeField] private float _attackRadius;
         [SerializeField] private float _rotateSpeed;
         [SerializeField] private float _critChance;
-        
-        public TowerModel(TowerModel root)
+        [SerializeField] private float _attackAngle;
+        [SerializeField] private string _projectileId;
+
+        public TowerData(TowerData root)
         {
             _damage = root.Damage;
             _attackSpeed = root.AttackSpeed;
-            _range = root.Range;
+            _attackRadius = root.AttackRadius;
             _rotateSpeed = root.RotateSpeed;
             _critChance = root.CritChance;
+            _attackAngle = root.AttackAngle;
+            _projectileId = root.ProjectileId;
         }
     }
 }

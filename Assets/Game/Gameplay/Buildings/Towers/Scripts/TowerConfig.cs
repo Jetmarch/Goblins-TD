@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Gameplay.Buildings
 {
     [CreateAssetMenu(fileName = "TowerConfig", menuName = "Gameplay/Buildings/TowerConfig")]
     public class TowerConfig : ScriptableObject
     {
-        [SerializeField] private TowerModel _towerModel;
+        [FormerlySerializedAs("_towerModel")] [SerializeField] private TowerData _towerData;
 
-        public TowerModel GetPrototype()
+        public TowerData GetPrototype()
         {
-            return new TowerModel(_towerModel);
+            return new TowerData(_towerData);
         }
     }
 }

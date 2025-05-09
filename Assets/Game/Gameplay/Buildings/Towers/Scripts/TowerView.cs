@@ -1,40 +1,54 @@
+using System;
+using Game.Gameplay.Weapons;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Gameplay.Buildings
 {
     public class TowerView : MonoBehaviour
     {
-        [SerializeField] private GameObject _weapon;
-        [SerializeField] private GameObject _projectilePrefab;
+        //TODO:
+        public event Action AttackRequest;
         
-        [SerializeField] private TowerConfig _config;
-
-        [SerializeField] private EnemySensor _enemySensor;
-
         [SerializeField] private GameObject _currentTarget;
-        private TowerModel _towerModel;
         
-        private Rotator _rotator;
-
-        private void Start()
+        private WeaponView _weaponView;
+        private TowerData _towerData;
+        
+        //VFX
+        //SFX
+        
+        [Inject]
+        private void Initialize(TowerData towerData, WeaponView weaponView)
         {
-            _towerModel = _config.GetPrototype();
-
-            _enemySensor.OnEnemyDetected += SetTarget;
-            _enemySensor.OnEnemyLost += (x) => SetTarget(null);
-            _enemySensor.SetRadius(_towerModel.Range);
+            _towerData = towerData;
+            _weaponView = weaponView;
         }
 
         private void Update()
         {
             if (!_currentTarget) return;
             
-            _rotator.RotateTowardsTarget(_currentTarget.transform.position, _weapon.transform, _towerModel.RotateSpeed, Time.deltaTime);
+            var deltaTime = Time.deltaTime;
+            
+            Rotator.RotateTowardsTarget(_currentTarget.transform.position, _weaponView.transform, _towerData.RotateSpeed, deltaTime);
+
+            if (ConeDetector.IsTargetInCone(_currentTarget.transform.position, _weaponView.transform, _towerData.AttackAngle))
+            {
+                AttackRequest?.Invoke();
+                
+                _weaponView.Attack();
+            }
         }
 
         public void SetTarget(GameObject target)
         {
             _currentTarget = target;
+        }
+
+        public void TargetLost(GameObject _)
+        {
+            _currentTarget = null;
         }
     }
 }

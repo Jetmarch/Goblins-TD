@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a6cd2b190f48438e4e334d6f3c1323, type: 3}
   m_Name: ProtocolHammer
   m_EditorClassIdentifier: 
-  _towerModel:
+  _towerData:
     _damage: 0
-    _attackSpeed: 0
+    _attackSpeed: 2
     _range: 5
     _rotateSpeed: 2
     _critChance: 0
+    _attackAngle: 5
+    _projectileId: 
