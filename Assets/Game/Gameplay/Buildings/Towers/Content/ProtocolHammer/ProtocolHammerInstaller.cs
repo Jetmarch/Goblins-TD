@@ -32,7 +32,6 @@ namespace Game.Gameplay.Buildings
             
             builder.Register<EnemySensorObserver>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<AttackRequestObserver>(Lifetime.Scoped).AsImplementedInterfaces();
-
         }
     }
 }

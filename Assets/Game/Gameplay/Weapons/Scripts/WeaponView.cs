@@ -21,6 +21,8 @@ namespace Game.Gameplay.Weapons
         public void Initialize(WeaponData weaponData)
         {
             _weaponData = weaponData;
+
+            _attackTrigger = Animator.StringToHash(_attackAnimationName);
         }
         
         public void Attack()
