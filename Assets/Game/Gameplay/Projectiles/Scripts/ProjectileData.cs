@@ -9,13 +9,16 @@ namespace Game.Gameplay.Projectiles
         public string ProjectileName => _projectileName;
         public bool IsPiercingThrough => _isPiercingThrough;
         public float Distance => _distance;
+        public LayerMask LayerMask => _layerMask;
         
         [SerializeField] private string _projectileName;
         [SerializeField] private bool _isPiercingThrough;
         [SerializeField] private float _distance;
+        [SerializeField] private LayerMask _layerMask;
 
         public ProjectileData(ProjectileData root)
         {
+            _layerMask = root.LayerMask;
             _projectileName = root.ProjectileName;
             _isPiercingThrough = root.IsPiercingThrough;
             _distance = root.Distance;

@@ -3130,6 +3130,7 @@ MonoBehaviour:
   autoInjectGameObjects:
   - {fileID: 1173505883}
   _gameLoopManager: {fileID: 558986186}
+  _projectileFactory: {fileID: 1225348763}
   _config: {fileID: 11400000, guid: 9303febf04b75c7418e00afc1f1b4a10, type: 2}
   _enemySensor: {fileID: 1173505885}
   _towerView: {fileID: 1173505886}
@@ -3253,6 +3254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf62db1b8284604a85e944568ead3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parent: {fileID: 0}
   _sampleProjectilePrefab: {fileID: 1851093678640666198, guid: 89e2e06087bddf849bb2ba9764915639, type: 3}
 --- !u!1 &1253477630
 GameObject:

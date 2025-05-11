@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using Game.GameEngine.Common;
 using Game.Gameplay.Buildings.Controllers;
 using Game.Gameplay.Projectiles;
 using Game.Gameplay.Weapons;
 using Modules.Core.GameLoop;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -12,10 +14,11 @@ namespace Game.Gameplay.Buildings
     public class ProtocolHammerInstaller : LifetimeScope
     {
         [SerializeField] private GameLoopManager _gameLoopManager;
+        [SerializeField] private RaycastProjectileFactory _raycastProjectileFactory;
         
-        [SerializeField] private ProjectileFactory _projectileFactory;
         
-        [SerializeField] private TowerConfig _config;
+        [SerializeField] private TowerConfig _towerConfig;
+        [SerializeField] private WeaponConfig _weaponConfig;
         [SerializeField] private EnemySensor _enemySensor;
         [SerializeField] private TowerView _towerView;
         [SerializeField] private WeaponView _weaponView;
@@ -24,17 +27,28 @@ namespace Game.Gameplay.Buildings
         {
             //Temp. Delete it later
             builder.RegisterInstance(_gameLoopManager).AsImplementedInterfaces();
-            builder.RegisterInstance(_projectileFactory).AsImplementedInterfaces();
             
-            var towerData = _config.GetPrototype();
+            
+            ConfigureProjectiles(builder);
+            
+            var towerData = _towerConfig.GetPrototype();
             
             ConfigureSensor(builder, towerData);
             ConfigureTower(builder, towerData);
-            ConfigureWeapon(builder, towerData);
+            ConfigureWeapon(builder);
             ConfigureControllers(builder);
             
             builder.Register<RotatingTowerPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<WeaponPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+        }
+
+        private void ConfigureProjectiles(IContainerBuilder builder)
+        {
+            builder.Register<ProjectileRepository>(Lifetime.Scoped).AsImplementedInterfaces();
+            
+            var projectileFactories = new Dictionary<string, IProjectileFactory>();
+            projectileFactories["Raycast"] = _raycastProjectileFactory;
+            builder.RegisterInstance(projectileFactories);
         }
         
         private void ConfigureSensor(IContainerBuilder builder, TowerData towerData)
@@ -51,9 +65,9 @@ namespace Game.Gameplay.Buildings
             builder.RegisterInstance(_towerView).AsImplementedInterfaces();
         }
 
-        private void ConfigureWeapon(IContainerBuilder builder, TowerData towerData)
+        private void ConfigureWeapon(IContainerBuilder builder)
         {
-            var weaponData = new WeaponData(towerData.ProjectileId, towerData.AttackSpeed);
+            var weaponData = _weaponConfig.GetPrototype();
             builder.RegisterInstance(weaponData);
             
             builder.RegisterInstance(_weaponView).AsImplementedInterfaces();

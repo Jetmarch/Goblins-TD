@@ -1,29 +1,32 @@
+using Game.Gameplay.Impacts;
 using UnityEngine;
 
 namespace Game.Gameplay.Projectiles
 {
-    //TODO: Remove monobehaviour
-    public class ProjectileView : MonoBehaviour
+    public class ProjectileView : MonoBehaviour, IProjectileView
     {
-        [SerializeField] private bool _pierceThrough = false;
-        [SerializeField] private float _distance = 100f;
-        [SerializeField] private LayerMask _layerMask;
+        public Transform Transform => transform;
+        public ImpactHitData ImpactHitData => _impactHitData;
+        [SerializeField] private ParticleSystem _hitParticles;
+        private ImpactHitData _impactHitData;
 
-
-        private RaycastHit2D _hit;
-        private void Start()
+        public void PlayHitFX()
         {
-            _hit = Physics2D.Raycast(transform.position, transform.up, _distance, _layerMask);
-            if(_hit.collider != null)
-            {
-                Debug.Log($"Hitted some object with name {_hit.collider.gameObject.name}");
-            }
+            _hitParticles?.Play();
         }
 
-        private void OnDrawGizmos()
+        public void SetImpactData(ImpactHitData impactHitData)
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, _hit.point);
+            _impactHitData = impactHitData;
         }
+    }
+
+    public interface IProjectileView
+    {
+        Transform Transform { get; }
+        void PlayHitFX();
+        
+        ImpactHitData ImpactHitData { get; }
+        void SetImpactData(ImpactHitData impactHitData);
     }
 }

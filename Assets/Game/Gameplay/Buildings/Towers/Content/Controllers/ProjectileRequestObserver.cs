@@ -1,4 +1,5 @@
 using System;
+using Game.Gameplay.Impacts;
 using Game.Gameplay.Projectiles;
 using Game.Gameplay.Weapons;
 using VContainer.Unity;
@@ -7,23 +8,23 @@ namespace Game.Gameplay.Buildings.Controllers
 {
     internal sealed class ProjectileRequestObserver : IInitializable, IDisposable
     {
-        private readonly ProjectileFactory _projectileFactory;
+        private readonly IProjectileRepository _projectileRepository;
         private readonly IWeaponPresenter _weaponPresenter;
 
-        public ProjectileRequestObserver(ProjectileFactory projectileFactory, IWeaponPresenter weaponPresenter)
+        public ProjectileRequestObserver(IProjectileRepository projectileRepository, IWeaponPresenter weaponPresenter)
         {
-            _projectileFactory = projectileFactory;
+            _projectileRepository = projectileRepository;
             _weaponPresenter = weaponPresenter;
         }
 
         public void Initialize()
         {
-            _weaponPresenter.ProjectileRequest += _projectileFactory.CreateProjectile;
+            _weaponPresenter.ProjectileRequest += _projectileRepository.CreateProjectile;
         }
 
         public void Dispose()
         {
-            _weaponPresenter.ProjectileRequest -= _projectileFactory.CreateProjectile;
+            _weaponPresenter.ProjectileRequest -= _projectileRepository.CreateProjectile;
         }
     }
 }
