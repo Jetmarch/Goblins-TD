@@ -5,10 +5,10 @@ using VContainer;
 namespace Game.Gameplay.Buildings
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class EnemySensor : MonoBehaviour
+    public sealed class EnemySensor : MonoBehaviour, ITargetSensor
     {
-        public event Action<GameObject> EnemyDetected;
-        public event Action<GameObject> EnemyLost;
+        public event Action<ITarget> EnemyDetected;
+        public event Action<ITarget> EnemyLost;
         
         [SerializeField] private CircleCollider2D _collider;
         
@@ -24,19 +24,21 @@ namespace Game.Gameplay.Buildings
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            EnemyDetected?.Invoke(other.gameObject);
+            if (!other.TryGetComponent(out ITarget target)) return;
             
+            EnemyDetected?.Invoke(target);
             Debug.Log($"Enemy detected: {other.gameObject}");
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            EnemyLost?.Invoke(other.gameObject);
+            if (!other.TryGetComponent(out ITarget target)) return;
             
+            EnemyLost?.Invoke(target);
             Debug.Log($"Enemy lost: {other.gameObject}");
         }
 
-        public void SetRadius(float radius)
+        private void SetRadius(float radius)
         {
             _collider.radius = radius;
         }
@@ -45,11 +47,18 @@ namespace Game.Gameplay.Buildings
     [Serializable]
     public class EnemySensorData
     {
+        // ReSharper disable once InconsistentNaming
         public float Radius;
 
         public EnemySensorData(float radius)
         {
             Radius = radius;
         }
+    }
+
+    public interface ITargetSensor
+    {
+        event Action<ITarget> EnemyDetected;
+        event Action<ITarget> EnemyLost;
     }
 }

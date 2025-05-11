@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ProtocolHammer
   m_EditorClassIdentifier: 
   _towerData:
-    _damage: 0
+    _damage: 15
     _attackSpeed: 2
-    _range: 5
+    _attackRadius: 5
     _rotateSpeed: 2
-    _critChance: 0
+    _critChance: 15
     _attackAngle: 5
     _projectileId: 

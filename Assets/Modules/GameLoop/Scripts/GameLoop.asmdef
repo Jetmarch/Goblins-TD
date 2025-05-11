@@ -1,10 +1,8 @@
 {
-    "name": "Game",
+    "name": "GameLoop",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:032df6e929252564fb435c934cb1cd35"
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

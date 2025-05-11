@@ -4,27 +4,32 @@ using VContainer.Unity;
 namespace Game.Gameplay.Buildings.Controllers
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public sealed class EnemySensorObserver : IInitializable, IDisposable
+    internal sealed class EnemySensorObserver : IInitializable, IDisposable
     {
-        private readonly EnemySensor _enemySensor;
-        private readonly TowerView _towerView;
+        private readonly ITargetSensor _targetSensor;
+        private readonly ITowerPresenter _towerPresenter;
         
-        public EnemySensorObserver(EnemySensor enemySensor, TowerView towerView)
+        public EnemySensorObserver(EnemySensor targetSensor, ITowerPresenter towerPresenter)
         {
-            _enemySensor = enemySensor;
-            _towerView = towerView;
+            _targetSensor = targetSensor;
+            _towerPresenter = towerPresenter;
         }
 
         public void Initialize()
         {
-            _enemySensor.EnemyDetected += _towerView.SetTarget;
-            _enemySensor.EnemyLost += _towerView.TargetLost;
+            _targetSensor.EnemyDetected += _towerPresenter.SetTarget;
+            _targetSensor.EnemyLost += LostTarget;
         }
 
         public void Dispose()
         {
-            _enemySensor.EnemyDetected -= _towerView.SetTarget;
-            _enemySensor.EnemyLost -= _towerView.TargetLost;
+            _targetSensor.EnemyDetected -= _towerPresenter.SetTarget;
+            _targetSensor.EnemyLost -= LostTarget;
+        }
+
+        private void LostTarget(ITarget _)
+        {
+            _towerPresenter.LostTarget();
         }
     }
 }

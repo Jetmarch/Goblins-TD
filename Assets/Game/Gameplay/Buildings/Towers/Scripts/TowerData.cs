@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Gameplay.Buildings
 {
@@ -17,7 +16,7 @@ namespace Game.Gameplay.Buildings
         
         [SerializeField] private float _damage;
         [SerializeField] private float _attackSpeed;
-        [FormerlySerializedAs("_range")] [SerializeField] private float _attackRadius;
+        [SerializeField] private float _attackRadius;
         [SerializeField] private float _rotateSpeed;
         [SerializeField] private float _critChance;
         [SerializeField] private float _attackAngle;

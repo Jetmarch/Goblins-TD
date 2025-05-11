@@ -5,25 +5,25 @@ using VContainer.Unity;
 namespace Game.Gameplay.Buildings.Controllers
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public sealed class AttackRequestObserver : IInitializable, IDisposable
+    internal sealed class AttackRequestObserver : IInitializable, IDisposable
     {
-        private readonly TowerView _towerView;
-        private readonly WeaponView _weaponView;
+        private readonly ITowerPresenter _towerPresenter;
+        private readonly IWeaponPresenter _weaponPresenter;
         
-        public AttackRequestObserver(TowerView towerView, WeaponView weaponView)
+        public AttackRequestObserver(ITowerPresenter towerPresenter, IWeaponPresenter weaponPresenter)
         {
-            _towerView = towerView;
-            _weaponView = weaponView;
+            _towerPresenter = towerPresenter;
+            _weaponPresenter = weaponPresenter;
         }
         
         public void Initialize()
         {
-            _towerView.AttackRequest += _weaponView.Attack;
+            _towerPresenter.AttackRequest += _weaponPresenter.Attack;
         }
 
         public void Dispose()
         {
-            _towerView.AttackRequest -= _weaponView.Attack;
+            _towerPresenter.AttackRequest -= _weaponPresenter.Attack;
         }
     }
 }

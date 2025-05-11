@@ -1410,6 +1410,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545129052}
   m_CullTransparentMesh: 1
+--- !u!1 &558986184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558986185}
+  - component: {fileID: 558986186}
+  m_Layer: 0
+  m_Name: GameLoopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558986185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558986184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2018531173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558986186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558986184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3374dbb90294b4781aa794c9904fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &570395762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1584,7 @@ GameObject:
   - component: {fileID: 603880168}
   - component: {fileID: 603880170}
   - component: {fileID: 603880169}
+  - component: {fileID: 603880171}
   m_Layer: 6
   m_Name: Dummy
   m_TagString: Untagged
@@ -1625,6 +1670,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &603880171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603880167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21a51ecf2ef4ca5a7950f09db634593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,7 +3049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4ce61aa94942946bdbcd8cc6cff477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentTarget: {fileID: 0}
 --- !u!58 &1173505887
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3073,15 +3129,8 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1173505883}
+  _gameLoopManager: {fileID: 558986186}
   _config: {fileID: 11400000, guid: 9303febf04b75c7418e00afc1f1b4a10, type: 2}
-  _towerData:
-    _damage: 0
-    _attackSpeed: 0
-    _attackRadius: 0
-    _rotateSpeed: 0
-    _critChance: 0
-    _attackAngle: 0
-    _projectileId: 
   _enemySensor: {fileID: 1173505885}
   _towerView: {fileID: 1173505886}
   _weaponView: {fileID: 1991612604}
@@ -4103,7 +4152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponAnimator: {fileID: 1991612602}
   _attackAnimationName: Attack
-  _projectileFactory: {fileID: 1225348763}
   _shootPoint: {fileID: 482460018}
 --- !u!1 &2004369878
 GameObject:
@@ -4173,6 +4221,7 @@ Transform:
   - {fileID: 1598557128}
   - {fileID: 2146135673}
   - {fileID: 1225348762}
+  - {fileID: 558986185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052772351

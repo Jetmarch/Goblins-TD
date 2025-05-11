@@ -1,54 +1,28 @@
-using System;
 using Game.Gameplay.Weapons;
 using UnityEngine;
 using VContainer;
 
 namespace Game.Gameplay.Buildings
 {
-    public class TowerView : MonoBehaviour
+    public class TowerView : MonoBehaviour, ITowerView
     {
-        //TODO:
-        public event Action AttackRequest;
         
-        [SerializeField] private GameObject _currentTarget;
+        public Transform TowerTransform => transform;
+        public Transform WeaponTransform => _weaponView.WeaponTransform;
         
-        private WeaponView _weaponView;
-        private TowerData _towerData;
-        
-        //VFX
-        //SFX
+        private IWeaponView _weaponView;
         
         [Inject]
-        private void Initialize(TowerData towerData, WeaponView weaponView)
+        private void Initialize(IWeaponView weaponView)
         {
-            _towerData = towerData;
             _weaponView = weaponView;
         }
 
-        private void Update()
+        public void PlayAttackFX()
         {
-            if (!_currentTarget) return;
-            
-            var deltaTime = Time.deltaTime;
-            
-            Rotator.RotateTowardsTarget(_currentTarget.transform.position, _weaponView.transform, _towerData.RotateSpeed, deltaTime);
-
-            if (ConeDetector.IsTargetInCone(_currentTarget.transform.position, _weaponView.transform, _towerData.AttackAngle))
-            {
-                AttackRequest?.Invoke();
-                
-                _weaponView.Attack();
-            }
-        }
-
-        public void SetTarget(GameObject target)
-        {
-            _currentTarget = target;
-        }
-
-        public void TargetLost(GameObject _)
-        {
-            _currentTarget = null;
+            _weaponView.PlayAttackAnimation();
+            //Local VFX
+            //Local SFX
         }
     }
 }
