@@ -5,11 +5,15 @@ using UnityEngine;
 
 namespace Game.Gameplay.Projectiles
 {
-    internal sealed class RaycastProjectileFactory : MonoBehaviour, IProjectileFactory
+    internal sealed class RaycastProjectileFactory : IProjectileFactory
     {
-        
-        [SerializeField] private float _defaultRayDistance = 100f;
-        [SerializeField] private LayerMask _raycastLayerMask;
+        private readonly float _defaultRayDistance = 100f;
+        private readonly LayerMask _raycastLayerMask;
+
+        public RaycastProjectileFactory(LayerMask raycastLayerMask)
+        {
+            _raycastLayerMask = raycastLayerMask;
+        }
 
         public IProjectileView GetOrCreateProjectile(SpawnProjectileData projectileData, ImpactHitData impactHitData)
         {
@@ -17,7 +21,7 @@ namespace Game.Gameplay.Projectiles
             var hit = Physics2D.Raycast(projectileData.Position, direction, _defaultRayDistance, _raycastLayerMask);
             if (!hit.collider) return default;
             
-            Debug.Log($"Hitted some object with name {hit.collider.gameObject.name}");
+            Debug.Log($"Hit some object with name {hit.collider.gameObject.name}");
             if (!hit.collider.gameObject.TryGetComponent(out IHittable hittable)) return default;
             
             hittable.Impact(impactHitData);

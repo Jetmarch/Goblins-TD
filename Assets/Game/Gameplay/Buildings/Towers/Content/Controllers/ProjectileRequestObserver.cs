@@ -6,6 +6,7 @@ using VContainer.Unity;
 
 namespace Game.Gameplay.Buildings.Controllers
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     internal sealed class ProjectileRequestObserver : IInitializable, IDisposable
     {
         private readonly IProjectileRepository _projectileRepository;

@@ -13,10 +13,6 @@ namespace Game.Gameplay.Buildings
 {
     public class ProtocolHammerInstaller : LifetimeScope
     {
-        [SerializeField] private GameLoopManager _gameLoopManager;
-        [SerializeField] private RaycastProjectileFactory _raycastProjectileFactory;
-        
-        
         [SerializeField] private TowerConfig _towerConfig;
         [SerializeField] private WeaponConfig _weaponConfig;
         [SerializeField] private EnemySensor _enemySensor;
@@ -25,12 +21,6 @@ namespace Game.Gameplay.Buildings
         
         protected override void Configure(IContainerBuilder builder)
         {
-            //Temp. Delete it later
-            builder.RegisterInstance(_gameLoopManager).AsImplementedInterfaces();
-            
-            
-            ConfigureProjectiles(builder);
-            
             var towerData = _towerConfig.GetPrototype();
             
             ConfigureSensor(builder, towerData);
@@ -40,15 +30,6 @@ namespace Game.Gameplay.Buildings
             
             builder.Register<RotatingTowerPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<WeaponPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
-        }
-
-        private void ConfigureProjectiles(IContainerBuilder builder)
-        {
-            builder.Register<ProjectileRepository>(Lifetime.Scoped).AsImplementedInterfaces();
-            
-            var projectileFactories = new Dictionary<string, IProjectileFactory>();
-            projectileFactories["Raycast"] = _raycastProjectileFactory;
-            builder.RegisterInstance(projectileFactories);
         }
         
         private void ConfigureSensor(IContainerBuilder builder, TowerData towerData)
