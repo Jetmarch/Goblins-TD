@@ -4,14 +4,18 @@ using System.Linq;
 using Game.GameEngine;
 using Game.GameEngine.GridSystem;
 using Game.GameEngine.Pathfinding;
+using Game.Gameplay.Buildings;
+using Game.Gameplay.Impacts;
 using Game.UI;
 using UnityEngine;
 
 namespace Game.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class BasicEnemy : MonoBehaviour
+    public class BasicEnemy : MonoBehaviour, ITarget, IHittable
     {
+        public Transform Transform => transform;
+        
         [SerializeField] private float _speed = 1f;
         [SerializeField] private HealthStorage _healthStorage;
         
@@ -113,6 +117,7 @@ namespace Game.Gameplay
 
         private void OnDrawGizmos()
         {
+            if(_path == null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(_deathBounds.center, _deathBounds.size);
 
@@ -121,11 +126,16 @@ namespace Game.Gameplay
             var cellVectors = new Vector3[_path.Count];
             for(int i=0; i<_path.Count; i++)
             {
-                var cellVector = new Vector3(_path[i].WorldX * _path[i].Size + _gridManager.Grid.WorldPosition.x, _path[i].WorldY * _path[i].Size + _gridManager.Grid.WorldPosition.y, 0);
+                var cellVector = new Vector3(_path[i].WorldX + _gridManager.Grid.WorldPosition.x, _path[i].WorldY + _gridManager.Grid.WorldPosition.y, 0);
                 cellVectors[i] = cellVector;
             }
 
             Gizmos.DrawLineStrip(cellVectors, false);
+        }
+
+        public void Impact(ImpactHitData impactHitData)
+        {
+            TakeDamage(impactHitData.Damage);
         }
     }
 }

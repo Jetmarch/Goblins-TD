@@ -43,22 +43,4 @@ namespace Game.Gameplay.Buildings
             _collider.radius = radius;
         }
     }
-    
-    [Serializable]
-    public class EnemySensorData
-    {
-        // ReSharper disable once InconsistentNaming
-        public float Radius;
-
-        public EnemySensorData(float radius)
-        {
-            Radius = radius;
-        }
-    }
-
-    public interface ITargetSensor
-    {
-        event Action<ITarget> EnemyDetected;
-        event Action<ITarget> EnemyLost;
-    }
 }
