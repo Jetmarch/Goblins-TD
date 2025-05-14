@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using VContainer;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers.Components
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public sealed class EnemySensor : MonoBehaviour, ITargetSensor

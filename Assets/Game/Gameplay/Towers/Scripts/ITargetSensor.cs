@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers
 {
     public interface ITargetSensor
     {

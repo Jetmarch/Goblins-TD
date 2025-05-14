@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers.Components
 {
     public sealed class ConeDetector
     {

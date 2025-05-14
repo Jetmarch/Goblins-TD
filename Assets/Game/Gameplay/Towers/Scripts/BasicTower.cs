@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Gameplay
+namespace Game.Gameplay.Towers
 {
     public class BasicTower : MonoBehaviour
     {

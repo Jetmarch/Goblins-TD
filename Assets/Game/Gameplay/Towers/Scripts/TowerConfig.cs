@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers
 {
     [CreateAssetMenu(fileName = "TowerConfig", menuName = "Gameplay/Buildings/TowerConfig")]
     public class TowerConfig : ScriptableObject

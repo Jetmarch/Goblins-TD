@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers
 {
     [Serializable]
     public class TowerData

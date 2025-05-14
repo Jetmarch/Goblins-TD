@@ -4,8 +4,9 @@ using System.Linq;
 using Game.GameEngine;
 using Game.GameEngine.GridSystem;
 using Game.GameEngine.Pathfinding;
-using Game.Gameplay.Buildings;
 using Game.Gameplay.Impacts;
+using Game.Gameplay.Towers;
+using Game.Gameplay.Towers.PlayerBase;
 using Game.UI;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace Game.Gameplay
         
         [SerializeField] private GridManager _gridManager;
 
-        [SerializeField] private PlayerBase _playerBase;
+        [SerializeField] private PlayerBaseInstaller _playerBase;
         
         [SerializeField] private int _currentPathIndex;
 
@@ -44,7 +45,7 @@ namespace Game.Gameplay
             _path = new List<ICell>();
             
             _gridManager = GameObject.Find("TowerGrid").GetComponent<GridManager>();
-            _playerBase = FindFirstObjectByType<PlayerBase>();
+            _playerBase = FindFirstObjectByType<PlayerBaseInstaller>();
 
             _pathfinder = new Pathfinder(new AStarPathfinding());
             var startPoint = _gridManager.Grid.GetCellByWorldPositionOrDefault(transform.position);
@@ -82,12 +83,11 @@ namespace Game.Gameplay
 
         private void FixedUpdate()
         {
+            if (_currentPathIndex < 0) return;
             var pathPoint = _path.ElementAt(_currentPathIndex);
             
             var desiredPosition = new Vector2(pathPoint.WorldX, pathPoint.WorldY);
             var currentPosition = _rigidbody.position;
-            
-            Debug.Log($"Desired position: {desiredPosition}");
             
             
             var direction = desiredPosition - currentPosition;

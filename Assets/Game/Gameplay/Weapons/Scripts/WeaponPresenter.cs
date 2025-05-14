@@ -1,6 +1,6 @@
 using System;
-using Game.Gameplay.Buildings;
 using Game.Gameplay.Impacts;
+using Game.Gameplay.Towers;
 using Modules.Core.GameLoop;
 
 namespace Game.Gameplay.Weapons

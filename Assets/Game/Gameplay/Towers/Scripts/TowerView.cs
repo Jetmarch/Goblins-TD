@@ -2,7 +2,7 @@ using Game.Gameplay.Weapons;
 using UnityEngine;
 using VContainer;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers
 {
     public class TowerView : MonoBehaviour, ITowerView
     {

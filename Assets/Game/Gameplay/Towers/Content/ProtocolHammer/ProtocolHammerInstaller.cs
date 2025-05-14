@@ -1,15 +1,13 @@
-using System.Collections.Generic;
 using Game.GameEngine.Common;
-using Game.Gameplay.Buildings.Controllers;
-using Game.Gameplay.Projectiles;
+using Game.Gameplay.Towers.Components;
+using Game.Gameplay.Towers.Controllers;
+using Game.Gameplay.Towers.Presenters;
 using Game.Gameplay.Weapons;
-using Modules.Core.GameLoop;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers
 {
     public class ProtocolHammerInstaller : LifetimeScope
     {

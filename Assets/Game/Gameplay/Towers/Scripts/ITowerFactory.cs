@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Gameplay.Buildings.Towers.Scripts
+namespace Game.Gameplay.Towers
 {
     public interface ITowerFactory
     {

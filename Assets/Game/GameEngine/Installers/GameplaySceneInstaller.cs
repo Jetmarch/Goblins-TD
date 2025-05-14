@@ -1,5 +1,10 @@
 using System.Collections.Generic;
+using Game.Gameplay.Controllers;
 using Game.Gameplay.Projectiles;
+using Game.Gameplay.Towers.PlayerBase;
+using Game.Gameplay.WaveSystem;
+using Game.Meta.PlayerStash;
+using Game.Meta.Rewards;
 using Modules.Core.GameLoop;
 using UnityEngine;
 using VContainer;
@@ -12,10 +17,22 @@ namespace Game.GameEngine.Installers
         [SerializeField] private GameLoopManager _gameLoopManager;
         [SerializeField] private LayerMask _raycastProjectilesLayerMask;
         
+        [SerializeField] private WaveManager _waveManager;
+
+        [SerializeField] private GameObject _playerBasePrefab;
+        [SerializeField] private Transform _playerBaseParent;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             ConfigureGameLoop(builder);
+            ConfigureGameplayManager(builder);
             ConfigureProjectiles(builder);
+            ConfigureWaves(builder);
+            ConfigureControllers(builder);
+            ConfigurePlayerBase(builder);
+
+            builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
         }
 
         private void ConfigureGameLoop(IContainerBuilder builder)
@@ -31,6 +48,30 @@ namespace Game.GameEngine.Installers
             var projectileFactories = new Dictionary<string, IProjectileFactory>();
             projectileFactories["Raycast"] = new RaycastProjectileFactory(_raycastProjectilesLayerMask);
             builder.RegisterInstance(projectileFactories);
+        }
+
+        private void ConfigureGameplayManager(IContainerBuilder builder)
+        {
+            builder.Register<GameplayManager.GameplayManager>(Lifetime.Singleton).AsImplementedInterfaces();
+        }
+
+        private void ConfigureWaves(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_waveManager).AsImplementedInterfaces();
+        }
+
+        private void ConfigurePlayerBase(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_playerBasePrefab);
+            builder.RegisterInstance(_playerBaseParent);
+            builder.Register<PlayerBaseManager>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PlayerBaseSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
+        }
+
+        private void ConfigureControllers(IContainerBuilder builder)
+        {
+            builder.Register<VictoryController>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<DefeatController>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }

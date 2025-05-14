@@ -22,7 +22,7 @@ namespace Game.UI.Gameplay
             _startNextWaveButton.onClick.AddListener(StartNextWave);
 
             _waveManager.OnStartWave += SetWaveCounter;
-            _waveManager.OnAllWavesComplete += SetFinalWaveText;
+            _waveManager.AllWavesComplete += SetFinalWaveText;
             
             SetWaveCounter();
         }

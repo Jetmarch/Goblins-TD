@@ -2,7 +2,7 @@ using System;
 using Game.GameEngine;
 using UnityEngine;
 
-namespace Game.Gameplay
+namespace Game.Gameplay.Towers.PlayerBase
 {
     public class PlayerBase : MonoBehaviour
     {

@@ -1,7 +1,8 @@
 using System;
+using Game.Gameplay.Towers.Components;
 using Modules.Core.GameLoop;
 
-namespace Game.Gameplay.Buildings
+namespace Game.Gameplay.Towers.Presenters
 {
     internal sealed class RotatingTowerPresenter : ITowerPresenter, IUpdateListener
     {

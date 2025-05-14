@@ -2,7 +2,7 @@ using System;
 using Game.Gameplay.Weapons;
 using VContainer.Unity;
 
-namespace Game.Gameplay.Buildings.Controllers
+namespace Game.Gameplay.Towers.Controllers
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     internal sealed class AttackRequestObserver : IInitializable, IDisposable

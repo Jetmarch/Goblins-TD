@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Game.Gameplay.WaveSystem
 {
-    public class WaveManager : MonoBehaviour
+    public class WaveManager : MonoBehaviour, IWaveManager
     {
-        public event Action OnAllWavesComplete;
+        public event Action AllWavesComplete;
         public event Action OnStartWave;
         public int CurrentWave => _currentWave;
         
@@ -30,7 +30,7 @@ namespace Game.Gameplay.WaveSystem
         {
             if (_currentWave >= _config.Waves.Count)
             {
-                OnAllWavesComplete?.Invoke();
+                AllWavesComplete?.Invoke();
                 return;
             }
             var nextWave = _config.Waves[_currentWave];
@@ -44,5 +44,10 @@ namespace Game.Gameplay.WaveSystem
         {
             NextWave();
         }
+    }
+
+    public interface IWaveManager
+    {
+        event Action AllWavesComplete;
     }
 }
