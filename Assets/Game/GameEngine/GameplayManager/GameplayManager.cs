@@ -18,7 +18,7 @@ namespace Game.GameEngine.GameplayManager
         {
             ShowResultScreen(result);
             var rewards = _rewardManager.GetRewards();
-            _playerStash.AddRewards(rewards);
+            _playerStash.AddMultipleRewards(rewards);
         }
 
         private void ShowResultScreen(GameResult result)
@@ -50,7 +50,8 @@ namespace Game.GameEngine.GameplayManager
 
     public interface IPlayerStash
     {
+        IReadOnlyList<IReward> Rewards { get; }
         void AddReward(IReward reward);
-        void AddRewards(IEnumerable<IReward> rewards);
+        void AddMultipleRewards(IEnumerable<IReward> rewards);
     }
 }

@@ -11,6 +11,11 @@ namespace Game.GameEngine.GridSystem
         
         private void Awake()
         {
+            ConstructGrid();
+        }
+
+        private void ConstructGrid()
+        {
             _gridCells = new CellView[_gridManager.Grid.Width, _gridManager.Grid.Height];
             
             var gridXPos = _gridManager.Grid.WorldPosition.x;

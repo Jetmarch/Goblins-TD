@@ -8,7 +8,7 @@ namespace Game.GameEngine.Pathfinding
 {
     public sealed class AStarPathfinding : IPathfindingAlgorithm
     {
-        public bool FindPath(ICell startCell, ICell endCell, IGrid grid, out List<ICell> path)
+        public bool FindPath(ICell startCell, ICell endCell, IGrid<ICell> grid, out List<ICell> path)
         {
             path = new List<ICell>();
             var startNode = new Node(startCell);

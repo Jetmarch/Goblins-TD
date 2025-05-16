@@ -14,7 +14,7 @@ namespace Game.GameEngine.Pathfinding
         private ICell _startPoint;
         private ICell _endPoint;
 
-        private GridSystem.Grid _grid;
+        private IGrid<ICell> _grid;
         private void Start()
         {
             _pathfinder = new Pathfinder(new AStarPathfinding());

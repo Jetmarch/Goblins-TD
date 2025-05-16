@@ -25,9 +25,9 @@ namespace Game.GameEngine.GridSystem
 
         private bool _isBusy;
 
-        private IGrid _parent;
+        private IGrid<ICell> _parent;
 
-        public Cell(IGrid parent, int gridPosX, int gridPosY, float worldX, float worldY, float size)
+        public Cell(IGrid<ICell> parent, int gridPosX, int gridPosY, float worldX, float worldY, float size)
         {
             _parent = parent;
             _gridPosX = gridPosX;

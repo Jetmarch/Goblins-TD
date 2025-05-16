@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 6202539971993629698, guid: 15abc35b743547a48a617bb76e6bb31f, type: 3}
   _spawnPoint: {fileID: 334262458}
-  _spawnRadius: 1.5
+  _spawnRadius: 0.1
   _spawnRoot: {fileID: 620912098}
 --- !u!1 &36459380
 GameObject:
@@ -318,9 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 4
-  _gridHeight: 4
-  _cellSize: 0.25
+  _gridWidth: 2
+  _gridHeight: 2
+  _cellSize: 0.45
   _showGrid: 0
   _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &50811024
@@ -583,9 +583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 4
-  _gridHeight: 4
-  _cellSize: 0.25
+  _gridWidth: 2
+  _gridHeight: 2
+  _cellSize: 0.45
   _showGrid: 0
   _cellGap: {x: 0.1, y: 0.1}
 --- !u!225 &90989245
@@ -739,9 +739,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 4
-  _gridHeight: 4
-  _cellSize: 0.25
+  _gridWidth: 2
+  _gridHeight: 2
+  _cellSize: 0.45
   _showGrid: 0
   _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &140956929
@@ -967,7 +967,7 @@ Transform:
   m_GameObject: {fileID: 334262457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.01, z: 0}
+  m_LocalPosition: {x: 0, y: 3.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1715,7 +1715,7 @@ Transform:
   m_GameObject: {fileID: 710546978}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.17, y: -5.04, z: 0}
+  m_LocalPosition: {x: -1.97, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1734,10 +1734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 24
-  _gridHeight: 52
-  _cellSize: 0.25
-  _showGrid: 0
+  _gridWidth: 9
+  _gridHeight: 17
+  _cellSize: 0.45
+  _showGrid: 1
   _cellGap: {x: 0.1, y: 0.1}
 --- !u!1 &716030831
 GameObject:
@@ -2033,9 +2033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 4
-  _gridHeight: 4
-  _cellSize: 0.25
+  _gridWidth: 2
+  _gridHeight: 2
+  _cellSize: 0.45
   _showGrid: 0
   _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &907094525
@@ -2912,8 +2912,8 @@ Transform:
   m_GameObject: {fileID: 1669892688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.01, z: 0}
-  m_LocalScale: {x: 3.0130892, y: 3.4957695, z: 1}
+  m_LocalPosition: {x: 0.01, y: 0.3182, z: 0}
+  m_LocalScale: {x: 4.4039736, y: 8.387904, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004369879}
@@ -3416,11 +3416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2141286620329371369, guid: ea6cfff32b1e2dd41b45defbdb57adbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.12
       objectReference: {fileID: 0}
     - target: {fileID: 2141286620329371369, guid: ea6cfff32b1e2dd41b45defbdb57adbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.81
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: 2141286620329371369, guid: ea6cfff32b1e2dd41b45defbdb57adbc, type: 3}
       propertyPath: m_LocalPosition.z

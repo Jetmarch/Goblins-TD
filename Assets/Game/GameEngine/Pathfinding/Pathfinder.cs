@@ -13,7 +13,7 @@ namespace Game.GameEngine.Pathfinding
         }
         
         //TODO: Path smoothing
-        public bool FindPath(ICell startCell, ICell endCell, IGrid grid, out List<ICell> path)
+        public bool FindPath(ICell startCell, ICell endCell, IGrid<ICell> grid, out List<ICell> path)
         {
             if (_algorithm == null)
             {

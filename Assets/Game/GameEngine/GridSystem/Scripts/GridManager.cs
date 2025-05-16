@@ -4,16 +4,16 @@ namespace Game.GameEngine.GridSystem
 {
     public class GridManager : MonoBehaviour
     {
-        public Grid Grid => _grid;
+        public IGrid<ICell> Grid => _grid;
         
         [SerializeField] private int _gridWidth;
         [SerializeField] private int _gridHeight;
         [SerializeField] private float _cellSize;
-        
-        [SerializeField] private bool _showGrid;
         [SerializeField] private Vector2 _cellGap;
         
-        private Grid _grid;
+        [SerializeField] private bool _showGrid;
+        
+        private IGrid<ICell> _grid;
         #region Unity Callbacks
 
         private void Awake()
@@ -24,8 +24,13 @@ namespace Game.GameEngine.GridSystem
         private void OnDrawGizmos()
         {
             if (!_showGrid) return;
+
+            if (_grid == null)
+            {
+                ConstructGrid();
+            }
             
-            if (_grid == null) return;
+            _grid.SetPosition(transform.position);
             GridUseCases.DebugDrawGrid(_grid);
         }
         #endregion

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.GameEngine.GridSystem
 {
-    public class Grid : IGrid
+    public class Grid : IGrid<ICell>
     {
         public ICell[,] Cells => _cells;
         public Vector2 WorldPosition => _worldPosition;
@@ -11,7 +11,7 @@ namespace Game.GameEngine.GridSystem
         public int Height => _height;
         
         private Vector2 _worldPosition;
-        private readonly ICell[,] _cells;
+        private readonly Cell[,] _cells;
         private readonly int _width;
         private readonly int _height;
         private readonly float _cellSize;
@@ -23,7 +23,7 @@ namespace Game.GameEngine.GridSystem
             _width = width;
             _height = height;
             _cellSize = cellSize;
-            _cells = new ICell[width, height];
+            _cells = new Cell[width, height];
             _cellGap = cellGap;
 
             ConstructGrid();

@@ -83,7 +83,7 @@ namespace Game.Gameplay
 
         private void FixedUpdate()
         {
-            if (_currentPathIndex < 0) return;
+            if (_currentPathIndex <= 0) return;
             var pathPoint = _path.ElementAt(_currentPathIndex);
             
             var desiredPosition = new Vector2(pathPoint.WorldX, pathPoint.WorldY);

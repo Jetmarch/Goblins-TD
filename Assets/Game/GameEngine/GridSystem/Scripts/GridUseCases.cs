@@ -14,7 +14,7 @@ namespace Game.GameEngine.GridSystem
             return new Vector2(centerX, centerY);
         }
 
-        public static void GetPossibleTargetCellsForBuilding(IGrid buildingGrid, IGrid placementGrid,
+        public static void GetPossibleTargetCellsForBuilding(IGrid<ICell> buildingGrid, IGrid<ICell> placementGrid,
             List<ICell> possibleTargetCells)
         {
             possibleTargetCells.Clear();
@@ -47,14 +47,14 @@ namespace Game.GameEngine.GridSystem
             return new Vector2(cellWorldPositionX, cellWorldPositionY);
         }
 
-        public static bool CanBuild(List<ICell> possibleTargetCells, IGrid buildingGrid)
+        public static bool CanBuild(List<ICell> possibleTargetCells, IGrid<ICell> buildingGrid)
         {
             possibleTargetCells.RemoveAll(cell => !cell.IsWalkable);
             return possibleTargetCells.Count == buildingGrid.Cells.Length;
         }
         
 #if UNITY_EDITOR
-        public static void DebugDrawGrid(IGrid grid)
+        public static void DebugDrawGrid(IGrid<ICell> grid)
         {
             Gizmos.color = Color.green;
             

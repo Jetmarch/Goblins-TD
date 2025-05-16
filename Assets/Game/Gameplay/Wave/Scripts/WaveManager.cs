@@ -13,16 +13,21 @@ namespace Game.Gameplay.WaveSystem
         [SerializeField] private WaveSpawner _waveSpawner;
         [SerializeField] private int _currentWave;
         private WaveCounter _waveCounter;
+        
+        private bool _wavesComplete;
 
 
         private void Awake()
         {
+            _wavesComplete = false;
             _waveCounter = new WaveCounter();
             _waveCounter.OnCounterComplete += OnWaveDurationPassed;
         }
 
         private void Update()
         {
+            if (_wavesComplete) return;
+            
             _waveCounter.UpdateCounter(Time.deltaTime);
         }
 
@@ -30,6 +35,7 @@ namespace Game.Gameplay.WaveSystem
         {
             if (_currentWave >= _config.Waves.Count)
             {
+                _wavesComplete = true;
                 AllWavesComplete?.Invoke();
                 return;
             }
