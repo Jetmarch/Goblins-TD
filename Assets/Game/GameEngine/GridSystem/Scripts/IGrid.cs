@@ -1,15 +1,10 @@
-using UnityEngine;
 
 namespace Game.GameEngine.GridSystem
 {
-    public interface IGrid<T> where T : ICell
+    public interface IGrid<TCell> where TCell : ICell
     {
-        T GetCell(int x, int y);
-        Vector2 WorldPosition { get; }
-        void SetPosition(Vector2 worldPosition);
+        TCell GetCell(int x, int y);
         int Width { get; }
         int Height { get; }
-        T GetCellByWorldPositionOrDefault(Vector2 worldPosition);
-        T[,] Cells { get; }
     }
 }

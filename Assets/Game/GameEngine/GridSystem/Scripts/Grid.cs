@@ -1,11 +1,13 @@
+using System;
+using Game.GameEngine.Common;
 using UnityEngine;
 
 namespace Game.GameEngine.GridSystem
 {
+    [Prototype]
     public class Grid : IGrid<ICell>
     {
         public ICell[,] Cells => _cells;
-        public Vector2 WorldPosition => _worldPosition;
         public Vector2 CellGap => _cellGap;
         public int Width => _width;
         public int Height => _height;
@@ -38,7 +40,7 @@ namespace Game.GameEngine.GridSystem
             {
                 for (int y = 0; y < _height; y++)
                 {
-                    var cell = new Cell(this, x, y, x + currentXGap, y + currentYGap, _cellSize);
+                    var cell = new Cell(x, y, _cellSize);
                     _cells[x, y] = cell;
                     currentYGap += _cellGap.y;
                 }
@@ -71,11 +73,10 @@ namespace Game.GameEngine.GridSystem
             gridY = Mathf.FloorToInt((worldPosition.y - _worldPosition.y - _cellGap.y) / _cellSize);
         }
         
-        //TODO: Move to extensions or utils
         private static bool CheckBounds(int gridX, int gridY, int width, int height)
         {
             if (gridX < 0 || gridX >= width || gridY < 0 || gridY >= height) return false;
             return true;
-        }
+        } 
     }
 }

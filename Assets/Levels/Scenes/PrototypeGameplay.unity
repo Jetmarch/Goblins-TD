@@ -318,11 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 2
-  _gridHeight: 2
-  _cellSize: 0.45
+  _levelGridConfig: {fileID: 0}
   _showGrid: 0
-  _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &50811024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,11 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 2
-  _gridHeight: 2
-  _cellSize: 0.45
+  _levelGridConfig: {fileID: 0}
   _showGrid: 0
-  _cellGap: {x: 0.1, y: 0.1}
 --- !u!225 &90989245
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -739,11 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 2
-  _gridHeight: 2
-  _cellSize: 0.45
+  _levelGridConfig: {fileID: 0}
   _showGrid: 0
-  _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &140956929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,6 +995,37 @@ Transform:
   m_Children:
   - {fileID: 36459381}
   m_Father: {fileID: 2004369879}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &352716501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352716502}
+  m_Layer: 0
+  m_Name: PrototypeChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352716502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352716501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2018531173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1734,11 +1756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 9
-  _gridHeight: 17
-  _cellSize: 0.45
+  _levelGridConfig: {fileID: 11400000, guid: 63789a8df3406654095ec14c0cfc3c7a, type: 2}
   _showGrid: 1
-  _cellGap: {x: 0.1, y: 0.1}
 --- !u!1 &716030831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,11 +2052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 2
-  _gridHeight: 2
-  _cellSize: 0.45
+  _levelGridConfig: {fileID: 0}
   _showGrid: 0
-  _cellGap: {x: 0.1, y: 0.1}
 --- !u!114 &907094525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,6 +3106,7 @@ Transform:
   - {fileID: 2146135673}
   - {fileID: 558986185}
   - {fileID: 1514439647}
+  - {fileID: 352716502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099269416
@@ -3400,8 +3417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af501776d5abed49812a2553cb2ba8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placementGridView: {fileID: 1691777405}
-  _placementGridManager: {fileID: 710546980}
 --- !u!1001 &6338604470772684590
 PrefabInstance:
   m_ObjectHideFlags: 0

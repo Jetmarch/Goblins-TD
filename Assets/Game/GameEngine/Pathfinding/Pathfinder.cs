@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.GameEngine.GridSystem;
+using Game.Gameplay.Levels;
 
 namespace Game.GameEngine.Pathfinding
 {
@@ -13,7 +14,7 @@ namespace Game.GameEngine.Pathfinding
         }
         
         //TODO: Path smoothing
-        public bool FindPath(ICell startCell, ICell endCell, IGrid<ICell> grid, out List<ICell> path)
+        public bool FindPath(ILevelCell startCell, ILevelCell endCell, ILevelGrid grid, out List<ILevelCell> path)
         {
             if (_algorithm == null)
             {

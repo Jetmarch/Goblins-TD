@@ -1,10 +1,10 @@
-using Game.GameEngine.GridSystem;
+using Game.Gameplay.Levels;
 
 namespace Game.GameEngine.Pathfinding
 {
     public sealed class Node
     {
-        public ICell Cell => _cell;
+        public ILevelCell Cell => _cell;
         public int X => _cell.GridX;
         public int Y => _cell.GridY;
 
@@ -37,11 +37,11 @@ namespace Game.GameEngine.Pathfinding
         /// </summary>
         public int FCost => _gCost + _hCost;
         
-        private readonly ICell _cell;
+        private readonly ILevelCell _cell;
         private Node _parent;
         private int _gCost;
         private int _hCost;
-        public Node(ICell cell)
+        public Node(ILevelCell cell)
         {
             _cell = cell;
             _gCost = 0;

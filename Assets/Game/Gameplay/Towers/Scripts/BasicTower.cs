@@ -1,7 +1,9 @@
+using Game.GameEngine.Common;
 using UnityEngine;
 
 namespace Game.Gameplay.Towers
 {
+    [Prototype]
     public class BasicTower : MonoBehaviour
     {
         [SerializeField] private float _attackRange = 2f;

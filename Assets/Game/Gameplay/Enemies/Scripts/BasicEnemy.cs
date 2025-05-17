@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.GameEngine;
+using Game.GameEngine.Common;
 using Game.GameEngine.GridSystem;
 using Game.GameEngine.Pathfinding;
 using Game.Gameplay.Impacts;
+using Game.Gameplay.Levels;
 using Game.Gameplay.Towers;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.UI;
@@ -13,6 +15,7 @@ using UnityEngine;
 namespace Game.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [Prototype]
     public class BasicEnemy : MonoBehaviour, ITarget, IHittable
     {
         public Transform Transform => transform;
@@ -32,29 +35,29 @@ namespace Game.Gameplay
         
         [SerializeField] private int _currentPathIndex;
 
-        private List<ICell> _path;
+        private List<ILevelCell> _path;
         private Pathfinder _pathfinder;
 
-        private ICell _startPoint;
-        private ICell _endPoint;
+        private ILevelCell _startPoint;
+        private ILevelCell _endPoint;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _healthStorage.Reset();
-            _path = new List<ICell>();
+            _path = new List<ILevelCell>();
             
             _gridManager = GameObject.Find("TowerGrid").GetComponent<GridManager>();
             _playerBase = FindFirstObjectByType<PlayerBaseInstaller>();
 
             _pathfinder = new Pathfinder(new AStarPathfinding());
-            var startPoint = _gridManager.Grid.GetCellByWorldPositionOrDefault(transform.position);
+            var startPoint = LevelGridUseCases.GetCellByWorldPositionOrDefault(_gridManager.Grid, transform.position);
             if (startPoint == default)
             {
                 throw new ApplicationException("Enemy is not in pathfinding grid");
             }
             
-            var endPoint = _gridManager.Grid.GetCellByWorldPositionOrDefault(_playerBase.transform.position);
+            var endPoint = LevelGridUseCases.GetCellByWorldPositionOrDefault(_gridManager.Grid, _playerBase.transform.position);
             if (endPoint == default)
             {
                 throw new ApplicationException("Player base is not in pathfinding grid");

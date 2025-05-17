@@ -1,8 +1,10 @@
 using System;
+using Game.GameEngine.Common;
 using UnityEngine;
 
 namespace Game.Gameplay.WaveSystem
 {
+    [Prototype]
     public class WaveManager : MonoBehaviour, IWaveManager
     {
         public event Action AllWavesComplete;

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
-using Game.GameEngine.GridSystem;
+using Game.GameEngine.Common;
+using Game.Gameplay.Levels;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Game.GameEngine.DragAndDrop
 {
     [RequireComponent(typeof(GridManager)), RequireComponent(typeof(CanvasGroup))]
+    [Prototype]
     public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private GameObject _towerPrefab;
@@ -21,7 +23,7 @@ namespace Game.GameEngine.DragAndDrop
         
         private Camera _camera;
 
-        private List<ICell> _possibleTargetCells;
+        private List<ILevelCell> _possibleTargetCells;
         
         private void Start()
         {
@@ -29,7 +31,7 @@ namespace Game.GameEngine.DragAndDrop
             _towerGridManager = GetComponent<GridManager>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _camera = Camera.main;
-            _possibleTargetCells = new List<ICell>();
+            _possibleTargetCells = new List<ILevelCell>();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -51,7 +53,7 @@ namespace Game.GameEngine.DragAndDrop
             
             _gridView.UnhighlightAllCells();
             
-            GridUseCases.GetPossibleTargetCellsForBuilding(_towerGridManager.Grid, globalGrid, _possibleTargetCells);
+            LevelGridUseCases.GetPossibleTargetCellsForBuilding(_towerGridManager.Grid, globalGrid, _possibleTargetCells);
             foreach (var cell in _possibleTargetCells)
             {
                 _gridView.HighlightCell(cell.GridX, cell.GridY);
@@ -64,9 +66,9 @@ namespace Game.GameEngine.DragAndDrop
             _canvasGroup.alpha = 1f;
             _gridView.Hide();
 
-            if (!GridUseCases.CanBuild(_possibleTargetCells, _towerGridManager.Grid)) return;
+            if (!LevelGridUseCases.CanBuild(_possibleTargetCells, _towerGridManager.Grid)) return;
             
-            var towerPosition = GridUseCases.GetCenterOfCells(_possibleTargetCells);
+            var towerPosition = LevelGridUseCases.GetCenterOfCells(_possibleTargetCells);
             var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);
 
             foreach (var gridCell in _possibleTargetCells)

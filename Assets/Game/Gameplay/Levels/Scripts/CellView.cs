@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.GameEngine.GridSystem
+namespace Game.Gameplay.Levels
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class CellView : MonoBehaviour

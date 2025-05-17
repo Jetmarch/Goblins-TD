@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.GameEngine.GridSystem
+namespace Game.Gameplay.Levels
 {
     public class GridView : MonoBehaviour
     {
@@ -9,9 +9,10 @@ namespace Game.GameEngine.GridSystem
         [SerializeField] private GridManager _gridManager;
         private CellView[,] _gridCells;
         
-        private void Awake()
+        private void Start()
         {
             ConstructGrid();
+            Hide();
         }
 
         private void ConstructGrid()
@@ -24,18 +25,13 @@ namespace Game.GameEngine.GridSystem
             {
                 for (int y = 0; y < _gridManager.Grid.Height; y++)
                 {
-                    var cell = _gridManager.Grid.Cells[x, y];
+                    var cell = _gridManager.Grid.GetCell(x, y);
                     var cellPosition = new Vector3(cell.WorldX, cell.WorldY, 0f);
                     var gridCell = Instantiate(_gridCellPrefab, cellPosition, _gridCellPrefab.transform.rotation, _gridCellParent).GetComponent<CellView>();
                     gridCell.transform.localScale = new Vector3(cell.Size, cell.Size, 1f);
                     _gridCells[x,y] = gridCell;
                 }
             }
-        }
-
-        private void Start()
-        {
-            Hide();
         }
 
         [ContextMenu("Show")]
@@ -47,7 +43,8 @@ namespace Game.GameEngine.GridSystem
 
             }
         }
-
+    
+        [ContextMenu("Hide")]
         public void Hide()
         {
             foreach (var cell in _gridCells)

@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.GameEngine.Common;
 using Game.GameEngine.GridSystem;
+using Game.Gameplay.Levels;
 using UnityEngine;
 
 namespace Game.GameEngine.Pathfinding
 {
     public sealed class AStarPathfinding : IPathfindingAlgorithm
     {
-        public bool FindPath(ICell startCell, ICell endCell, IGrid<ICell> grid, out List<ICell> path)
+        public bool FindPath(ILevelCell startCell, ILevelCell endCell, ILevelGrid grid, out List<ILevelCell> path)
         {
-            path = new List<ICell>();
+            path = new List<ILevelCell>();
             var startNode = new Node(startCell);
             var endNode = new Node(endCell);
             
