@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.GameEngine.DragAndDrop
 {
-    [RequireComponent(typeof(GridManager)), RequireComponent(typeof(CanvasGroup))]
+    [RequireComponent(typeof(CanvasGroup))]
     [Prototype]
     public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
@@ -14,7 +14,6 @@ namespace Game.GameEngine.DragAndDrop
         [SerializeField] private Transform _towerParent;
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private GridManager _globalGridManager;
-        [SerializeField] private GridManager _towerGridManager;
         
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _onDragAlpha = 0.35f;
@@ -23,20 +22,17 @@ namespace Game.GameEngine.DragAndDrop
         
         private Camera _camera;
 
-        private List<ILevelCell> _possibleTargetCells;
+        private ILevelCell _possibleCellForBuilding;
         
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
-            _towerGridManager = GetComponent<GridManager>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _camera = Camera.main;
-            _possibleTargetCells = new List<ILevelCell>();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            _towerGridManager.ShowGrid();
             _canvasGroup.alpha = _onDragAlpha;
             _gridView.Show();
         }
@@ -47,35 +43,29 @@ namespace Game.GameEngine.DragAndDrop
 
             var worldPoint = _camera.ScreenToWorldPoint(eventData.position);
             
-            _towerGridManager.UpdateGridWorldPosition(worldPoint);
-            
             var globalGrid = _globalGridManager.Grid;
             
-            _gridView.UnhighlightAllCells();
+             _gridView.UnhighlightAllCells();
             
-            LevelGridUseCases.GetPossibleTargetCellsForBuilding(_towerGridManager.Grid, globalGrid, _possibleTargetCells);
-            foreach (var cell in _possibleTargetCells)
+            _possibleCellForBuilding = LevelGridUseCases.GetCellByWorldPositionOrDefault(globalGrid, worldPoint);
+
+            if (_possibleCellForBuilding != default)
             {
-                _gridView.HighlightCell(cell.GridX, cell.GridY);
+                _gridView.HighlightCell(_possibleCellForBuilding.GridX, _possibleCellForBuilding.GridY);
             }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            _towerGridManager.HideGrid();
             _canvasGroup.alpha = 1f;
             _gridView.Hide();
-
-            if (!LevelGridUseCases.CanBuild(_possibleTargetCells, _towerGridManager.Grid)) return;
+            if(_possibleCellForBuilding == default) return;
+            if (!LevelGridUseCases.CanBuild(_possibleCellForBuilding)) return;
             
-            var towerPosition = LevelGridUseCases.GetCenterOfCells(_possibleTargetCells);
+            var towerPosition = LevelGridUseCases.GetCenterOfCell(_possibleCellForBuilding);
             var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);
-
-            foreach (var gridCell in _possibleTargetCells)
-            {
-                _gridView.SetCellBusy(gridCell.GridX, gridCell.GridY, true);
-            }
-            _possibleTargetCells.Clear();
+            
+            _gridView.SetCellBusy(_possibleCellForBuilding.GridX, _possibleCellForBuilding.GridY, true);
             
             Destroy(gameObject);
         }

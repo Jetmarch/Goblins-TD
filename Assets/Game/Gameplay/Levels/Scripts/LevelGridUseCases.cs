@@ -7,12 +7,17 @@ namespace Game.Gameplay.Levels
 {
     public static class LevelGridUseCases
     {
-        public static Vector2 GetCenterOfCells(List<ILevelCell> cells)
+        public static Vector2 GetCenterOfMultipleCells(List<ILevelCell> cells)
         {
             var centerX = cells.Average(cell => cell.WorldX);
             var centerY = cells.Average(cell => cell.WorldY);
             
             return new Vector2(centerX, centerY);
+        }
+
+        public static Vector2 GetCenterOfCell(ILevelCell cell)
+        {
+            return new Vector2(cell.WorldX, cell.WorldY);
         }
 
         public static void GetPossibleTargetCellsForBuilding(ILevelGrid buildingGrid, ILevelGrid placementGrid,
@@ -58,6 +63,11 @@ namespace Game.Gameplay.Levels
             var countOfBuildingCells = buildingGrid.Width * buildingGrid.Height;
             return possibleTargetCells.Count == countOfBuildingCells;
         }
+
+        public static bool CanBuild(ILevelCell possibleCellForBuilding)
+        {
+            return !possibleCellForBuilding.IsBusy;
+        }
         
         public static ILevelCell GetCellByWorldPositionOrDefault(ILevelGrid grid, Vector2 worldPosition)
         {
@@ -102,5 +112,6 @@ namespace Game.Gameplay.Levels
             }
         }
 #endif
+        
     }
 }

@@ -36,6 +36,8 @@ namespace Game.Gameplay.Levels
         {
             _width = grid.Width;
             _height = grid.Height;
+            _cellSize = grid.CellSize;
+            _cellGap = grid.CellGap;
             _cells = new LevelCell[Width * Height];
 
             CopyCells(grid);

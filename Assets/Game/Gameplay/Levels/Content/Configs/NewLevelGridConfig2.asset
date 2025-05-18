@@ -15,7 +15,7 @@ MonoBehaviour:
   _levelGrid:
     _width: 9
     _height: 17
-    _cellSize: 0
+    _cellSize: 0.5
     _cellGap: {x: 0, y: 0}
     _worldPosition: {x: 0, y: 0}
     _cells:
