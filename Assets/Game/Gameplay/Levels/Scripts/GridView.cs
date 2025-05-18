@@ -18,9 +18,6 @@ namespace Game.Gameplay.Levels
         private void ConstructGrid()
         {
             _gridCells = new CellView[_gridManager.Grid.Width, _gridManager.Grid.Height];
-            
-            var gridXPos = _gridManager.Grid.WorldPosition.x;
-            var gridYPos = _gridManager.Grid.WorldPosition.y;
             for (int x = 0; x < _gridManager.Grid.Width; x++)
             {
                 for (int y = 0; y < _gridManager.Grid.Height; y++)

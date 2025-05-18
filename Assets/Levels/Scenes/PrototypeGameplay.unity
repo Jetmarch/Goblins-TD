@@ -752,7 +752,7 @@ MonoBehaviour:
   _rectTransform: {fileID: 140956926}
   _globalGridManager: {fileID: 710546980}
   _towerGridManager: {fileID: 140956928}
-  _canvasGroup: {fileID: 0}
+  _canvasGroup: {fileID: 140956927}
   _onDragAlpha: 0.35
   _gridView: {fileID: 1691777405}
 --- !u!1 &218093942
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3e183fb73a4a408b4b2d1255a50e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelGridConfig: {fileID: 11400000, guid: 63789a8df3406654095ec14c0cfc3c7a, type: 2}
+  _levelGridConfig: {fileID: 11400000, guid: 320af63d91180b846a06c9895376f5c2, type: 2}
   _showGrid: 1
 --- !u!1 &716030831
 GameObject:
@@ -2913,7 +2913,7 @@ GameObject:
   - component: {fileID: 1669892689}
   - component: {fileID: 1669892690}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2927,12 +2927,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669892688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.3182, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.98, y: 3.9182, z: 0}
   m_LocalScale: {x: 4.4039736, y: 8.387904, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2004369879}
+  m_Father: {fileID: 1691777404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1669892690
 SpriteRenderer:
@@ -3018,7 +3018,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1669892689}
   m_Father: {fileID: 710546979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1691777405
@@ -3069,7 +3070,6 @@ Transform:
   - {fileID: 90886998}
   - {fileID: 1253477631}
   - {fileID: 710546979}
-  - {fileID: 1669892689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018531172

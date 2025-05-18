@@ -156,42 +156,33 @@ namespace Game.Gameplay.Levels.Editor
                 throw new ApplicationException("Grid width and height must be greater than 0.");
             }
             
-            var cells = new LevelCell[_gridWidth * _gridHeight];
+            _levelGrid = new LevelGrid(_gridWidth, _gridHeight, _cellSize, _cellGap);
             
             for (int i = 0; i < _gridWidth; i++)
             {
                 for (int j = 0; j < _gridHeight; j++)
                 {
-                    cells[i + (j * _gridWidth)] = new LevelCell(i, j, _cellSize, LevelCellType.Buildable);
+                    var newCell = new LevelCell(i, j, _cellSize, LevelCellType.Buildable);
+                    _levelGrid.SetCell(i, j, newCell);
                 }
             }
-            _levelGrid = new LevelGrid(_gridWidth, _gridHeight, _cellSize, _cellGap, cells);
         }
         
         private void DrawGrid()
         {
-            for (int y = 0; y < _levelGrid.Height; y++)
+            //Height was inverted
+            for (int y = _levelGrid.Height - 1; y >= 0; y--)
             {
                 GUILayout.BeginHorizontal(); 
                 for (int x = 0; x < _levelGrid.Width; x++)
                 {
-                    if (_levelGrid.GetCell(x, y) is LevelCell cell)
+                    var cell = _levelGrid.GetCell(x, y);
+                    var cellColor = GetCellColor(cell.Type);
+                    GUI.color = cellColor;
+            
+                    if (GUILayout.Button(GUIContent.none, GUILayout.Width(50), GUILayout.Height(50)))
                     {
-                        var cellColor = GetCellColor(cell.Type);
-                        GUI.color = cellColor;
-
-                        if (GUILayout.Button(GUIContent.none, GUILayout.Width(50), GUILayout.Height(50)))
-                        {
-                            ChangeCellType(cell);
-                        }
-                    }
-                    else
-                    {
-                        GUI.color = Color.black;
-                        if (GUILayout.Button(GUIContent.none, GUILayout.Width(50), GUILayout.Height(50)))
-                        {
-                            Debug.LogWarning($"Cell at {x}, {y} is not LevelCell");
-                        }
+                        ChangeCellType(cell);
                     }
                 }
                 GUILayout.EndHorizontal(); 

@@ -23,13 +23,13 @@ namespace Game.Gameplay.Levels
         [SerializeField] private Vector2 _worldPosition;
         [SerializeField] private LevelCell[] _cells;
         
-        public LevelGrid(int width, int height, float cellSize, Vector2 cellGap, LevelCell[] cells)
+        public LevelGrid(int width, int height, float cellSize, Vector2 cellGap)
         {
             _width = width;
             _height = height;
-            _cells = cells;
             _cellSize = cellSize;
             _cellGap = cellGap;
+            _cells = new LevelCell[Width * Height];
         }
 
         public LevelGrid(LevelGrid grid)
@@ -54,7 +54,26 @@ namespace Game.Gameplay.Levels
         
         public LevelCell GetCell(int x, int y)
         {
-            return !GridUtilities.CheckGridBounds(x, y, Width, Height) ? default : Cells[x + (y * Width)];
+            if (!GridUtilities.CheckGridBounds(x, y, Width, Height))
+            {
+                Debug.LogWarning($"Cell at {x}, {y} is out of bounds.");
+                return default;
+            }
+            
+            var cell = Cells[x + (y * Width)];
+            cell.SetWorldPosition(WorldPosition);
+            return cell;
+        }
+
+        public void SetCell(int x, int y, LevelCell cell)
+        {
+            if (!GridUtilities.CheckGridBounds(x, y, Width, Height))
+            {
+                Debug.LogWarning("Cell at " + x + ", " + y + " is out of bounds.");
+                return;
+            }
+            
+            Cells[x + (y * Width)] = cell;
         }
     }
 }

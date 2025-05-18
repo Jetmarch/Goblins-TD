@@ -35,6 +35,7 @@ namespace Game.Gameplay.Levels
         private void Awake()
         {
             _levelGrid = _levelGridConfig.GetPrototype();
+            UpdateGridWorldPosition(transform.position);
         }
 
         #endregion

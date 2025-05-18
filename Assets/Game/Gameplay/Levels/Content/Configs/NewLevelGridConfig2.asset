@@ -1,0 +1,939 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6080fcd209442684a3d2980e091f2e, type: 3}
+  m_Name: NewLevelGridConfig2
+  m_EditorClassIdentifier: 
+  _levelGrid:
+    _width: 9
+    _height: 17
+    _cellSize: 0
+    _cellGap: {x: 0, y: 0}
+    _worldPosition: {x: 0, y: 0}
+    _cells:
+    - _gridX: 0
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 7
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 8
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 2
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 3
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 6
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 7
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 8
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 3
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 4
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 5
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 1
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 3
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 7
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 8
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1

@@ -8,8 +8,8 @@ namespace Game.Gameplay.Levels
     {
         public int GridX => _gridX;
         public int GridY => _gridY;
-        public float WorldX => _worldX;
-        public float WorldY => _worldY;
+        public float WorldX => _gridX * _size + _worldPosition.x;
+        public float WorldY => _gridY * _size + _worldPosition.y;
         public float Size => _size;
         public bool IsWalkable => !IsBusy;
         public bool IsBusy => _isBusy;
@@ -17,8 +17,7 @@ namespace Game.Gameplay.Levels
 
         [SerializeField] private int _gridX;
         [SerializeField] private int _gridY;
-        [SerializeField] private float _worldX;
-        [SerializeField] private float _worldY;
+        [SerializeField] private Vector2 _worldPosition;
         [SerializeField] private float _size;
         [SerializeField] private bool _isBusy;
         [SerializeField] private LevelCellType _type;
@@ -47,6 +46,11 @@ namespace Game.Gameplay.Levels
         public void SetBusy(bool isBusy)
         {
             _isBusy = isBusy;
+        }
+
+        public void SetWorldPosition(Vector2 worldPosition)
+        {
+            _worldPosition = worldPosition;
         }
     }
 }
