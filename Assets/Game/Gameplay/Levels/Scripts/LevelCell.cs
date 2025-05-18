@@ -11,7 +11,7 @@ namespace Game.Gameplay.Levels
         public float WorldX => _gridX * _size + _worldPosition.x;
         public float WorldY => _gridY * _size + _worldPosition.y;
         public float Size => _size;
-        public bool IsWalkable => !IsBusy;
+        public bool IsWalkable => _type == LevelCellType.Walkable;
         public bool IsBusy => _isBusy;
         public LevelCellType Type => _type;
 

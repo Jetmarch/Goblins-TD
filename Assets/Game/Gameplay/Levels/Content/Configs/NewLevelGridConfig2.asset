@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: NewLevelGridConfig2
   m_EditorClassIdentifier: 
   _levelGrid:
-    _width: 9
-    _height: 17
-    _cellSize: 0.5
+    _width: 10
+    _height: 19
+    _cellSize: 0.45
     _cellGap: {x: 0, y: 0}
     _worldPosition: {x: 0, y: 0}
     _cells:
@@ -24,25 +24,25 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 1
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 2
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 3
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 4
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
@@ -54,49 +54,55 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 6
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 7
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 8
       _gridY: 0
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
+    - _gridX: 9
+      _gridY: 0
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
     - _gridX: 0
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 1
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 2
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 3
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 4
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
@@ -108,25 +114,31 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 6
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 7
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 8
       _gridY: 1
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
+    - _gridX: 9
+      _gridY: 1
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
     - _gridX: 0
       _gridY: 2
       _worldPosition: {x: 0, y: 0}
@@ -176,6 +188,12 @@ MonoBehaviour:
       _isBusy: 0
       _type: 1
     - _gridX: 8
+      _gridY: 2
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 9
       _gridY: 2
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -235,6 +253,12 @@ MonoBehaviour:
       _size: 0.45
       _isBusy: 0
       _type: 1
+    - _gridX: 9
+      _gridY: 3
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 4
       _worldPosition: {x: 0, y: 0}
@@ -270,20 +294,26 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 6
       _gridY: 4
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 7
       _gridY: 4
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 8
+      _gridY: 4
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
       _gridY: 4
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -318,7 +348,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 5
       _gridY: 5
       _worldPosition: {x: 0, y: 0}
@@ -342,6 +372,12 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
+      _type: 0
+    - _gridX: 9
+      _gridY: 5
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
       _type: 1
     - _gridX: 0
       _gridY: 6
@@ -354,13 +390,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 2
       _gridY: 6
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 3
       _gridY: 6
       _worldPosition: {x: 0, y: 0}
@@ -378,20 +414,26 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 6
       _gridY: 6
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 7
       _gridY: 6
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 8
+      _gridY: 6
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
       _gridY: 6
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -408,7 +450,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 2
       _gridY: 7
       _worldPosition: {x: 0, y: 0}
@@ -420,7 +462,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 4
       _gridY: 7
       _worldPosition: {x: 0, y: 0}
@@ -451,6 +493,12 @@ MonoBehaviour:
       _size: 0.45
       _isBusy: 0
       _type: 1
+    - _gridX: 9
+      _gridY: 7
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 8
       _worldPosition: {x: 0, y: 0}
@@ -462,13 +510,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 2
       _gridY: 8
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 3
       _gridY: 8
       _worldPosition: {x: 0, y: 0}
@@ -500,6 +548,12 @@ MonoBehaviour:
       _isBusy: 0
       _type: 0
     - _gridX: 8
+      _gridY: 8
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
       _gridY: 8
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -528,7 +582,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 4
       _gridY: 9
       _worldPosition: {x: 0, y: 0}
@@ -558,6 +612,12 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
+      _type: 1
+    - _gridX: 9
+      _gridY: 9
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
       _type: 0
     - _gridX: 0
       _gridY: 10
@@ -582,32 +642,38 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 4
       _gridY: 10
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 5
       _gridY: 10
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 6
       _gridY: 10
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 7
       _gridY: 10
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 8
+      _gridY: 10
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
       _gridY: 10
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -636,13 +702,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 4
       _gridY: 11
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 5
       _gridY: 11
       _worldPosition: {x: 0, y: 0}
@@ -666,7 +732,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
+    - _gridX: 9
+      _gridY: 11
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 12
       _worldPosition: {x: 0, y: 0}
@@ -678,25 +750,25 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 2
       _gridY: 12
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 3
       _gridY: 12
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 4
       _gridY: 12
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 5
       _gridY: 12
       _worldPosition: {x: 0, y: 0}
@@ -720,7 +792,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
+    - _gridX: 9
+      _gridY: 12
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 13
       _worldPosition: {x: 0, y: 0}
@@ -732,7 +810,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 2
       _gridY: 13
       _worldPosition: {x: 0, y: 0}
@@ -750,7 +828,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 5
       _gridY: 13
       _worldPosition: {x: 0, y: 0}
@@ -774,7 +852,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
+    - _gridX: 9
+      _gridY: 13
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
@@ -786,7 +870,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 2
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
@@ -798,37 +882,43 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 4
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 5
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 6
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 7
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 8
       _gridY: 14
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
+    - _gridX: 9
+      _gridY: 14
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
     - _gridX: 0
       _gridY: 15
       _worldPosition: {x: 0, y: 0}
@@ -840,7 +930,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 2
       _gridY: 15
       _worldPosition: {x: 0, y: 0}
@@ -852,7 +942,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 1
+      _type: 0
     - _gridX: 4
       _gridY: 15
       _worldPosition: {x: 0, y: 0}
@@ -864,7 +954,7 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 6
       _gridY: 15
       _worldPosition: {x: 0, y: 0}
@@ -878,6 +968,12 @@ MonoBehaviour:
       _isBusy: 0
       _type: 1
     - _gridX: 8
+      _gridY: 15
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 9
       _gridY: 15
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
@@ -894,13 +990,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 2
       _gridY: 16
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 3
       _gridY: 16
       _worldPosition: {x: 0, y: 0}
@@ -912,13 +1008,13 @@ MonoBehaviour:
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 5
       _gridY: 16
       _worldPosition: {x: 0, y: 0}
       _size: 0.45
       _isBusy: 0
-      _type: 0
+      _type: 1
     - _gridX: 6
       _gridY: 16
       _worldPosition: {x: 0, y: 0}
@@ -937,3 +1033,129 @@ MonoBehaviour:
       _size: 0.45
       _isBusy: 0
       _type: 1
+    - _gridX: 9
+      _gridY: 16
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 1
+    - _gridX: 0
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 1
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 3
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 7
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 8
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
+      _gridY: 17
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 0
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 1
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 2
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 3
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 4
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 5
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 6
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 7
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 8
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0
+    - _gridX: 9
+      _gridY: 18
+      _worldPosition: {x: 0, y: 0}
+      _size: 0.45
+      _isBusy: 0
+      _type: 0

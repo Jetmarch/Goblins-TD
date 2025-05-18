@@ -57,6 +57,8 @@ namespace Game.Gameplay
                 throw new ApplicationException("Enemy is not in pathfinding grid");
             }
             
+            Debug.Log($"Start point is: {startPoint.GridX}, {startPoint.GridY}");
+            
             var endPoint = LevelGridUseCases.GetCellByWorldPositionOrDefault(_gridManager.Grid, _playerBase.transform.position);
             if (endPoint == default)
             {
