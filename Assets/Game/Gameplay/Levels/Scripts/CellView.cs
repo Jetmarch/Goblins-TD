@@ -11,6 +11,7 @@ namespace Game.Gameplay.Levels
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         private bool _isBusy;
+        private bool _isWalkable;
         
         private void Start()
         {
@@ -19,7 +20,7 @@ namespace Game.Gameplay.Levels
         
         public void Highlight()
         {
-            _spriteRenderer.color = _isBusy ? _highlightColorBusy : _highlightColorEmpty;
+            _spriteRenderer.color = _isBusy || _isWalkable ? _highlightColorBusy : _highlightColorEmpty;
         }
         public void Unhighlight()
         {
@@ -29,6 +30,11 @@ namespace Game.Gameplay.Levels
         public void SetBusy(bool isBusy)
         {
             _isBusy = isBusy;
+        }
+        
+        public void SetWalkable(bool isWalkable)
+        {
+            _isWalkable = isWalkable;
         }
         
         public void Show()

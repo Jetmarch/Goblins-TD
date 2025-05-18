@@ -66,7 +66,7 @@ namespace Game.Gameplay.Levels
 
         public static bool CanBuild(ILevelCell possibleCellForBuilding)
         {
-            return !possibleCellForBuilding.IsBusy;
+            return !possibleCellForBuilding.IsBusy && !possibleCellForBuilding.IsWalkable;
         }
         
         public static ILevelCell GetCellByWorldPositionOrDefault(ILevelGrid grid, Vector2 worldPosition)

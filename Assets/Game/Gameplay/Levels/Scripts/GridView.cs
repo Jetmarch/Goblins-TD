@@ -27,6 +27,7 @@ namespace Game.Gameplay.Levels
                     var gridCell = Instantiate(_gridCellPrefab, cellPosition, _gridCellPrefab.transform.rotation, _gridCellParent).GetComponent<CellView>();
                     gridCell.transform.localScale = new Vector3(cell.Size, cell.Size, 1f);
                     _gridCells[x,y] = gridCell;
+                    gridCell.SetWalkable(cell.IsWalkable);
                 }
             }
         }
