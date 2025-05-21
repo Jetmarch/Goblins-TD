@@ -4,14 +4,14 @@ using UnityEngine;
 namespace Game.Gameplay.Coins
 {
     [Serializable]
-    internal sealed class CoinsStorage
+    public sealed class CoinsStorage
     {
         public event Action CoinsChanged;
         
         public int Coins => _coins;
         [SerializeField] private int _coins = 0;
 
-        public void DecreaseCoins(int amount)
+        public void RemoveCoins(int amount)
         {
             if (!HasEnoughCoins(amount))
             {

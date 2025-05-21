@@ -7,6 +7,8 @@ namespace Game.Gameplay.Coins
     [Prototype]
     public sealed class CoinsView : MonoBehaviour
     {
+        public CoinsStorage CoinsStorage => _coinsStorage;
+        
         [SerializeField] private CoinsStorage _coinsStorage;
         [SerializeField] private TextMeshProUGUI _coinsText;
 
@@ -17,6 +19,8 @@ namespace Game.Gameplay.Coins
         }
 
         private void UpdateCoinsText() => _coinsText.text = $"Coins: {_coinsStorage.Coins.ToString()}";
+        
+        public void AddCoins(int amount) => _coinsStorage.AddCoins(amount);
         
 #if UNITY_EDITOR
         [ContextMenu("Add 100 coins")]        

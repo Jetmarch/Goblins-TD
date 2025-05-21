@@ -5,18 +5,20 @@ using Game.GameEngine;
 using Game.GameEngine.Common;
 using Game.GameEngine.GridSystem;
 using Game.GameEngine.Pathfinding;
+using Game.Gameplay.Coins;
 using Game.Gameplay.Impacts;
 using Game.Gameplay.Levels;
 using Game.Gameplay.Towers;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [Prototype]
-    public class BasicEnemy : MonoBehaviour, ITarget, IHittable
+    public sealed class BasicEnemy : MonoBehaviour, ITarget, IHittable
     {
         public Transform Transform => transform;
         
@@ -35,6 +37,9 @@ namespace Game.Gameplay
         
         [SerializeField] private int _currentPathIndex;
 
+        [SerializeField] private CoinsView _coinsView;
+        [SerializeField] private int _countOfMoneyDropOnDeath = 5;
+
         private List<ILevelCell> _path;
         private Pathfinder _pathfinder;
 
@@ -46,6 +51,8 @@ namespace Game.Gameplay
             _rigidbody = GetComponent<Rigidbody2D>();
             _healthStorage.Reset();
             _path = new List<ILevelCell>();
+            
+            _coinsView = GameObject.Find("CoinsView").GetComponent<CoinsView>();
             
             _gridManager = GameObject.Find("TowerGrid").GetComponent<GridManager>();
             _playerBase = FindFirstObjectByType<PlayerBaseInstaller>();
@@ -117,6 +124,7 @@ namespace Game.Gameplay
 
         private void Die()
         {
+            _coinsView.AddCoins(_countOfMoneyDropOnDeath);
             Destroy(gameObject);
         }
 

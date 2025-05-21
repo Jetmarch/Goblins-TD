@@ -29,6 +29,10 @@ namespace Game.GameEngine.DragAndDrop
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _camera = Camera.main;
+            
+            _gridView = GameObject.Find("GridView").GetComponent<GridView>();
+            _globalGridManager = GameObject.Find("TowerGrid").GetComponent<GridManager>();
+            _towerParent = GameObject.Find("Towers").transform;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
