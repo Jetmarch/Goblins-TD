@@ -5,6 +5,7 @@ using Game.Gameplay.Towers.PlayerBase;
 using Game.Gameplay.WaveSystem;
 using Game.Meta.PlayerStash;
 using Game.Meta.Rewards;
+using Game.UI.GameResult;
 using Modules.Core.GameLoop;
 using UnityEngine;
 using VContainer;
@@ -21,6 +22,8 @@ namespace Game.GameEngine.Installers
 
         [SerializeField] private GameObject _playerBasePrefab;
         [SerializeField] private Transform _playerBaseParent;
+
+        [SerializeField] private GameResultView _gameResultView;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -33,6 +36,7 @@ namespace Game.GameEngine.Installers
 
             builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.RegisterInstance(_gameResultView).AsSelf();
         }
 
         private void ConfigureGameLoop(IContainerBuilder builder)
@@ -72,6 +76,9 @@ namespace Game.GameEngine.Installers
         {
             builder.Register<VictoryController>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DefeatController>(Lifetime.Singleton).AsImplementedInterfaces();
+            
+            builder.Register<GameResultController>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<TimeStopController>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }

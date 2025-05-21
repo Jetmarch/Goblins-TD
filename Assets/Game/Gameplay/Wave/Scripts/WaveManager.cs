@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Game.Gameplay.WaveSystem
 {
     [Prototype]
-    public class WaveManager : MonoBehaviour, IWaveManager
+    public sealed class WaveManager : MonoBehaviour, IWaveManager
     {
         public event Action AllWavesComplete;
-        public event Action OnStartWave;
+        public event Action StartWave;
         public int CurrentWave => _currentWave;
         
         [SerializeField] private WaveDataConfig _config;
@@ -45,7 +45,7 @@ namespace Game.Gameplay.WaveSystem
             _waveSpawner.AddWaveToSpawn(nextWave);
             _waveCounter.StartCounter(nextWave.WaveDuration);
             _currentWave++;
-            OnStartWave?.Invoke();
+            StartWave?.Invoke();
         }
 
         private void OnWaveDurationPassed()

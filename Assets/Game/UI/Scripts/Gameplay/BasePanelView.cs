@@ -13,6 +13,12 @@ namespace Game.UI
             _togglePanel.onClick.AddListener(ToggleShopPanel);
         }
         
-        private void ToggleShopPanel() => _panel.SetActive(!_panel.activeSelf);
+        [ContextMenu("Toggle")]
+        public void ToggleShopPanel() => _panel.SetActive(!_panel.activeSelf);
+        
+        [ContextMenu("Show")]
+        public void Show() => _panel.SetActive(true);
+        [ContextMenu("Hide")]
+        public void Hide() => _panel.SetActive(false);
     }
 }

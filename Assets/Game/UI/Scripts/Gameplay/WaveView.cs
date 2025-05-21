@@ -1,5 +1,4 @@
 using System;
-using Game.GameEngine;
 using Game.Gameplay.WaveSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +20,7 @@ namespace Game.UI.Gameplay
             
             _startNextWaveButton.onClick.AddListener(StartNextWave);
 
-            _waveManager.OnStartWave += SetWaveCounter;
+            _waveManager.StartWave += SetWaveCounter;
             _waveManager.AllWavesComplete += SetFinalWaveText;
             
             SetWaveCounter();

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.GameEngine;
 using Game.GameEngine.Common;
-using Game.GameEngine.GridSystem;
 using Game.GameEngine.Pathfinding;
 using Game.Gameplay.Coins;
 using Game.Gameplay.Impacts;
@@ -12,7 +11,6 @@ using Game.Gameplay.Towers;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Gameplay
 {
@@ -95,7 +93,11 @@ namespace Game.Gameplay
 
         private void FixedUpdate()
         {
-            if (_currentPathIndex <= 0) return;
+            if (_currentPathIndex <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
             var pathPoint = _path.ElementAt(_currentPathIndex);
             
             var desiredPosition = new Vector2(pathPoint.WorldX, pathPoint.WorldY);
