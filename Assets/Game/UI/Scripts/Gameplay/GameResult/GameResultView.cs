@@ -1,4 +1,5 @@
 using System;
+using Game.App;
 using Game.GameEngine.GameplayManager;
 using UnityEngine;
 using VContainer.Unity;
@@ -7,6 +8,28 @@ namespace Game.UI.GameResult
 {
     public sealed class GameResultView : BasePanelView
     {
+        [SerializeField] private string _lobbySceneName;
+
+        private void Awake()
+        {
+            _togglePanel.onClick.RemoveAllListeners();
+        }
+
+        private void OnEnable()
+        {
+            _togglePanel.onClick.AddListener(LoadLobby);
+        }
+        
+        private void OnDisable()
+        {
+            _togglePanel.onClick.RemoveListener(LoadLobby);
+        }
+
+        private void LoadLobby()
+        {
+            LoadingManager.LoadScene(_lobbySceneName);
+        }
+
         public void ShowRewards(IReward[] rewards)
         {
             Show();

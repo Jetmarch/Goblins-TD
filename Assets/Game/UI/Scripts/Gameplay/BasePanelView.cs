@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,14 +6,21 @@ namespace Game.UI
 {
     public abstract class BasePanelView : MonoBehaviour
     {
-        [SerializeField] private GameObject _panel;
-        [SerializeField] private Button _togglePanel;
+        [SerializeField] protected GameObject _panel;
+        [SerializeField] protected Button _togglePanel;
 
-        private void Awake()
+
+        private void OnEnable()
         {
             _togglePanel.onClick.AddListener(ToggleShopPanel);
         }
-        
+
+        private void OnDisable()
+        {
+            _togglePanel.onClick.RemoveListener(ToggleShopPanel);
+        }
+
+
         [ContextMenu("Toggle")]
         public void ToggleShopPanel() => _panel.SetActive(!_panel.activeSelf);
         

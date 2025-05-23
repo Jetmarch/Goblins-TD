@@ -4213,6 +4213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _panel: {fileID: 331561910}
   _togglePanel: {fileID: 239001907}
+  _lobbySceneName: MainMenu
 --- !u!1 &1598557127
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,7 +4272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4fd9bcfb20984c4d88e773116f54ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: b85e7841692b4604f95427c049a8c9c0, type: 2}
+  _config: {fileID: 11400000, guid: 450c0563f1632714c9e8f7b9b6adaacd, type: 2}
   _waveSpawner: {fileID: 1598557129}
   _currentWave: 0
 --- !u!1 &1662510690
