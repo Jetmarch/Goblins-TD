@@ -1,5 +1,6 @@
 using System;
 using Game.GameEngine;
+using Game.GameEngine.EntityComponents;
 using VContainer.Unity;
 
 namespace Game.Gameplay.Towers.PlayerBase

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DebugWaveConfig 1
   m_EditorClassIdentifier: 
   _waves:
-  - _waveDuration: 10
+  - _waveDuration: 50
     _spawnInterval: 1
     _enemySpawnData:
     - EnemyId: FleshCrawler

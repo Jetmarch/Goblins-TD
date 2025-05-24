@@ -1,22 +1,21 @@
 using UnityEngine;
-using VContainer.Unity;
 
 namespace Game.Gameplay.Towers.PlayerBase
 {
-    internal sealed class PlayerBaseSpawner : IStartable
+    internal sealed class PlayerBaseSpawner : IPlayerBaseFactory
     {
-        private readonly GameObject _playerBase;
+        private readonly GameObject _playerBasePrefab;
         private readonly Transform _playerBaseParent;
 
-        public PlayerBaseSpawner(GameObject playerBase, Transform playerBaseParent)
+        public PlayerBaseSpawner(GameObject playerBasePrefab, Transform playerBaseParent)
         {
-            _playerBase = playerBase;
+            _playerBasePrefab = playerBasePrefab;
             _playerBaseParent = playerBaseParent;
         }
 
-        public void Start()
+        public GameObject CreatePlayerBase()
         {
-            Object.Instantiate(_playerBase, _playerBaseParent);
+            return Object.Instantiate(_playerBasePrefab, _playerBaseParent);
         }
     }
 }

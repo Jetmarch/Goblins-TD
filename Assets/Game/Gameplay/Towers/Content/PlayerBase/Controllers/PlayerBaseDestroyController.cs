@@ -1,5 +1,5 @@
 using System;
-using Game.GameEngine;
+using Game.GameEngine.EntityComponents;
 using Game.Gameplay.Controllers;
 using VContainer.Unity;
 

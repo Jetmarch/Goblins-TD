@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-namespace Game.GameEngine
+namespace Game.GameEngine.EntityComponents
 {
     [Serializable]
-    public class HealthStorage
+    public class HealthStorage : IComponent
     {
-        public event Action OnHealthChanged;
+        public event Action HealthChanged;
         public event Action OnDeath;
         
         public float CurrentHealth => _currentHealth;
@@ -26,12 +26,14 @@ namespace Game.GameEngine
         {
             _currentHealth -= amount;
             _currentHealth = Mathf.Clamp(_currentHealth, _minHealth, _maxHealth);
-            OnHealthChanged?.Invoke();
+            HealthChanged?.Invoke();
 
             if (_currentHealth <= _minHealth)
             {
                 OnDeath?.Invoke();
             }
         }
+
+        
     }
 }

@@ -1,10 +1,13 @@
 using System;
 using Game.GameEngine;
+using Game.GameEngine.Common;
+using Game.GameEngine.EntityComponents;
 using UnityEngine;
 
 namespace Game.Gameplay.Towers.PlayerBase
 {
-    public class PlayerBase : MonoBehaviour
+    [Prototype, Obsolete]
+    public sealed class PlayerBase : MonoBehaviour
     {
         [SerializeField] private HealthStorage _healthStorage;
 

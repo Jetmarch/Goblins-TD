@@ -1,5 +1,6 @@
 using System;
 using Game.GameEngine.GameplayManager;
+using Game.Gameplay.Towers.PlayerBase;
 using VContainer.Unity;
 
 namespace Game.Gameplay.Controllers
@@ -29,11 +30,5 @@ namespace Game.Gameplay.Controllers
         {
             _gameplayManager.EndGameWithResult(GameResult.Defeat);
         }
-    }
-
-    public interface IPlayerBaseManager
-    {
-        event Action BaseDestroyed;
-        void NotifyBaseDestroyed();
     }
 }

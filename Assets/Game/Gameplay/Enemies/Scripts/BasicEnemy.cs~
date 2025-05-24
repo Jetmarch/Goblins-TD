@@ -83,13 +83,13 @@ namespace Game.Gameplay
         private void OnEnable()
         {
             _healthStorage.OnDeath += Die;
-            _healthStorage.HealthChanged += UpdateHealthBar;
+            _healthStorage.OnHealthChanged += UpdateHealthBar;
         }
 
         private void OnDisable()
         {
             _healthStorage.OnDeath -= Die;
-            _healthStorage.HealthChanged -= UpdateHealthBar;
+            _healthStorage.OnHealthChanged -= UpdateHealthBar;
         }
 
         private void FixedUpdate()
