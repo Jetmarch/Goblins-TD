@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     public class GridView : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-using Game.Gameplay.Levels;
+using Game.Gameplay.LevelGrid;
 
 namespace Game.GameEngine.Pathfinding
 {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.Gameplay.Controllers;
 using Game.Gameplay.Enemies;
+using Game.Gameplay.Levels;
 using Game.Gameplay.Projectiles;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.Gameplay.WaveSystem;
@@ -41,6 +42,7 @@ namespace Game.GameEngine.Installers
         
         protected override void Configure(IContainerBuilder builder)
         {
+            ConfigureLevelData(builder);
             ConfigureGameLoop(builder);
             ConfigureGameplayManager(builder);
             ConfigureProjectiles(builder);
@@ -50,9 +52,20 @@ namespace Game.GameEngine.Installers
             ConfigureEnemies(builder);
             ConfigureUI(builder);
             
+            
             builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterInstance(_gameResultView).AsSelf();
+        }
+
+        private void ConfigureLevelData(IContainerBuilder builder)
+        {
+            var levelConfig = LevelManager.GetCurrentLevel();
+            var waveData = levelConfig.WaveDataConfig;
+            var levelGridConfig = levelConfig.LevelGridConfig;
+            builder.RegisterInstance(waveData);
+            builder.RegisterInstance(levelGridConfig);
+            builder.RegisterInstance(levelConfig);
         }
 
         private void ConfigureGameLoop(IContainerBuilder builder)

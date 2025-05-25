@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     public static class LevelGridUseCases
     {

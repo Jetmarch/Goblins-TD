@@ -1,9 +1,11 @@
-using System;
+using Game.GameEngine.Common;
 using UnityEngine;
+using VContainer;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
-    public class GridManager : MonoBehaviour
+    [Prototype]
+    public sealed class GridManager : MonoBehaviour
     {
         public LevelGrid Grid => _levelGrid;
 
@@ -40,6 +42,12 @@ namespace Game.Gameplay.Levels
 
         #endregion
 
+        [Inject]
+        private void Configure(LevelGridConfig levelGridConfig)
+        {
+            _levelGridConfig = levelGridConfig;
+        }
+        
         public void ShowGrid()
         {
             _showGrid = true;
@@ -50,7 +58,7 @@ namespace Game.Gameplay.Levels
             _showGrid = false;
         }
 
-        public void UpdateGridWorldPosition(Vector3 position)
+        private void UpdateGridWorldPosition(Vector3 position)
         {
             _levelGrid.WorldPosition = position;
         }

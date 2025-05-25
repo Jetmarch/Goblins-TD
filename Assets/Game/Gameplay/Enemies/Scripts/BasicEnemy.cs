@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Game.GameEngine;
 using Game.GameEngine.Common;
 using Game.GameEngine.EntityComponents;
 using Game.GameEngine.Pathfinding;
 using Game.Gameplay.Coins;
 using Game.Gameplay.Impacts;
-using Game.Gameplay.Levels;
+using Game.Gameplay.LevelGrid;
 using Game.Gameplay.Towers;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.UI;

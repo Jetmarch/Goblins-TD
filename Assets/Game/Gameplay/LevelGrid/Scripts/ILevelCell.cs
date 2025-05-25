@@ -1,6 +1,6 @@
 using Game.GameEngine.GridSystem;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     public interface ILevelCell : ICell
     {

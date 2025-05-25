@@ -1,7 +1,7 @@
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     public interface ILevelGrid : IGrid<LevelCell>
     {

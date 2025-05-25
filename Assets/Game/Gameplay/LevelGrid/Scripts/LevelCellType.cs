@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     [Serializable]
     public enum LevelCellType

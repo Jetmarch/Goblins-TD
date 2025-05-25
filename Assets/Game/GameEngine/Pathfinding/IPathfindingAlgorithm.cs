@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Game.GameEngine.GridSystem;
-using Game.Gameplay.Levels;
+using Game.Gameplay.LevelGrid;
 
 namespace Game.GameEngine.Pathfinding
 {

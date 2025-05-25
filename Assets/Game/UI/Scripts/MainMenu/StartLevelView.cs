@@ -1,9 +1,12 @@
+using System;
 using Game.App;
+using Game.GameEngine.Common;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.UI.MainMenu
 {
+    [Obsolete, Prototype]
     public class StartLevelView : MonoBehaviour
     {
         [SerializeField] private string _levelName;

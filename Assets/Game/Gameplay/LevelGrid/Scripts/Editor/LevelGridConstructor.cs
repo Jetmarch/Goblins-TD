@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Game.Gameplay.Levels.Editor
+namespace Game.Gameplay.LevelGrid.Editor
 {
     public class LevelGridConstructor : EditorWindow
     {

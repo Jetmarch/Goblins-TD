@@ -2,7 +2,7 @@ using System;
 using Game.GameEngine.GridSystem;
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     [Serializable]
     public class LevelGrid : ILevelGrid

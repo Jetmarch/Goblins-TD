@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     [CreateAssetMenu(fileName = "LevelGridConfig", menuName = "Gameplay/Levels/LevelGridConfig")]
     public sealed class LevelGridConfig : ScriptableObject

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Game.GameEngine.Common;
-using Game.Gameplay.Levels;
+using Game.Gameplay.LevelGrid;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

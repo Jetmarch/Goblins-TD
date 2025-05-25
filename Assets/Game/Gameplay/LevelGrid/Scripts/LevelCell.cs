@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Gameplay.Levels
+namespace Game.Gameplay.LevelGrid
 {
     [Serializable]
     public class LevelCell : ILevelCell
