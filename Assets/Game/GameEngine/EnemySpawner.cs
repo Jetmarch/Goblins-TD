@@ -10,12 +10,12 @@ namespace Game.GameEngine
         [SerializeField] private float _spawnRadius = 2f;
         [SerializeField] private Transform _spawnRoot;
 
-        public void SpawnEnemy(string enemyId)
+        public GameObject SpawnEnemy(string enemyId)
         {
             //TODO: Get enemy prefab by id
             //Spawn it
             var spawnPosition = GetRandomSpawnPosition();
-            Instantiate(_enemyPrefab, spawnPosition, _enemyPrefab.transform.rotation, _spawnRoot);
+            return Instantiate(_enemyPrefab, spawnPosition, _enemyPrefab.transform.rotation, _spawnRoot);
         }
 
         private Vector2 GetRandomSpawnPosition()

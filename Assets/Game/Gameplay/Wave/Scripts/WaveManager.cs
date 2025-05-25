@@ -1,6 +1,7 @@
 using System;
 using Game.GameEngine.Common;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Gameplay.WaveSystem
 {
@@ -8,6 +9,7 @@ namespace Game.Gameplay.WaveSystem
     public sealed class WaveManager : MonoBehaviour, IWaveManager
     {
         public event Action AllWavesComplete;
+        public bool IsAllWavesComplete => _currentWave >= _config.Waves.Count;
         public event Action StartWave;
         public int CurrentWave => _currentWave;
         
@@ -18,12 +20,35 @@ namespace Game.Gameplay.WaveSystem
         
         private bool _wavesComplete;
 
+        [Inject]
+        private void Configure(WaveSpawner waveSpawner)
+        {
+            _waveSpawner = waveSpawner;
+        }
 
         private void Awake()
         {
             _wavesComplete = false;
             _waveCounter = new WaveCounter();
             _waveCounter.OnCounterComplete += OnWaveDurationPassed;
+        }
+
+        private void OnEnable()
+        {
+            _waveSpawner.WaveDataEmpty += WaveSpawnerDataEmpty;
+        }
+
+        private void OnDisable()
+        {
+            _waveSpawner.WaveDataEmpty -= WaveSpawnerDataEmpty;
+        }
+
+        private void WaveSpawnerDataEmpty()
+        {
+            _wavesComplete = IsAllWavesComplete;
+            if (!_wavesComplete) return;
+            
+            AllWavesComplete?.Invoke();
         }
 
         private void Update()
@@ -35,12 +60,13 @@ namespace Game.Gameplay.WaveSystem
 
         public void NextWave()
         {
-            if (_currentWave >= _config.Waves.Count)
+            _wavesComplete = IsAllWavesComplete;
+            if (_wavesComplete)
             {
-                _wavesComplete = true;
                 AllWavesComplete?.Invoke();
                 return;
             }
+            
             var nextWave = _config.Waves[_currentWave];
             _waveSpawner.AddWaveToSpawn(nextWave);
             _waveCounter.StartCounter(nextWave.WaveDuration);
@@ -57,5 +83,6 @@ namespace Game.Gameplay.WaveSystem
     public interface IWaveManager
     {
         event Action AllWavesComplete;
+        bool IsAllWavesComplete { get; }
     }
 }

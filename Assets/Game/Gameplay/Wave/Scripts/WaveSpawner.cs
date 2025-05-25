@@ -2,16 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game.GameEngine;
+using Game.GameEngine.Common;
+using Game.Gameplay.Enemies;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Gameplay.WaveSystem
 {
-    public class WaveSpawner : MonoBehaviour
+    [Prototype]
+    public sealed class WaveSpawner : MonoBehaviour
     {
-        [SerializeField] private EnemySpawner _enemySpawner;
+        public event Action WaveDataEmpty;
         
+        private IEnemyManager _enemyManager;
         private List<WaveData> _wavesToSpawn;
+
+        [Inject]
+        private void Configure(IEnemyManager enemyManager)
+        {
+            _enemyManager = enemyManager;
+        }
 
         private void Awake()
         {
@@ -27,6 +37,11 @@ namespace Game.Gameplay.WaveSystem
         {
             while (true)
             {
+                if (_wavesToSpawn.Count == 0)
+                {
+                    WaveDataEmpty?.Invoke();
+                }
+                
                 yield return new WaitUntil(() => _wavesToSpawn.Count > 0);
                 for (int i = 0; i < _wavesToSpawn.Count; i++)
                 {
@@ -36,7 +51,7 @@ namespace Game.Gameplay.WaveSystem
                         var enemySpawnData = wave.EnemySpawnData.ElementAt(k);
                         for (int j = 0; j < enemySpawnData.Count; j++)
                         {
-                            _enemySpawner.SpawnEnemy(enemySpawnData.EnemyId);
+                            _enemyManager.CreateEnemy(enemySpawnData.EnemyId);
                             yield return new WaitForSeconds(wave.SpawnInterval);
                         }
                     }

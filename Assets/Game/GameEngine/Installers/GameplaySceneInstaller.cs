@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Gameplay.Controllers;
+using Game.Gameplay.Enemies;
 using Game.Gameplay.Projectiles;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.Gameplay.WaveSystem;
@@ -16,17 +17,27 @@ namespace Game.GameEngine.Installers
 {
     public sealed class GameplaySceneInstaller : LifetimeScope
     {
+        [Header("Game Loop")] 
         [SerializeField] private GameLoopManager _gameLoopManager;
-        [SerializeField] private LayerMask _raycastProjectilesLayerMask;
-        
-        [SerializeField] private WaveManager _waveManager;
 
+        [Header("Waves")]
+        [SerializeField] private WaveSpawner _waveSpawner;
+        [SerializeField] private WaveManager _waveManager;
+        
+        [Header("Enemies")]
+        [SerializeField] private EnemyManager _enemyManager;
+
+        [Header("Player")]
         [SerializeField] private GameObject _playerBasePrefab;
         [SerializeField] private Transform _playerBaseParent;
 
-        [SerializeField] private GameResultView _gameResultView;
 
+        [Header("UI")]
         [SerializeField] private PlayerBaseInfoView _playerBaseInfoView;
+        [SerializeField] private GameResultView _gameResultView;
+        
+        [Header("Projectiles")]
+        [SerializeField] private LayerMask _raycastProjectilesLayerMask;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -36,7 +47,9 @@ namespace Game.GameEngine.Installers
             ConfigureWaves(builder);
             ConfigureControllers(builder);
             ConfigurePlayerBase(builder);
-
+            ConfigureEnemies(builder);
+            ConfigureUI(builder);
+            
             builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterInstance(_gameResultView).AsSelf();
@@ -65,6 +78,12 @@ namespace Game.GameEngine.Installers
         private void ConfigureWaves(IContainerBuilder builder)
         {
             builder.RegisterInstance(_waveManager).AsImplementedInterfaces();
+            builder.RegisterInstance(_waveSpawner).AsImplementedInterfaces().AsSelf();
+        }
+
+        private void ConfigureEnemies(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_enemyManager).AsImplementedInterfaces();
         }
 
         private void ConfigurePlayerBase(IContainerBuilder builder)
@@ -83,6 +102,7 @@ namespace Game.GameEngine.Installers
             builder.Register<GameResultController>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<TimeStopController>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerBaseSpawnController>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<StartGameController>(Lifetime.Singleton).AsImplementedInterfaces();
         }
 
         private void ConfigureUI(IContainerBuilder builder)

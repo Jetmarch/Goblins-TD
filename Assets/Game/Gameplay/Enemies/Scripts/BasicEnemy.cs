@@ -19,6 +19,7 @@ namespace Game.Gameplay
     [Prototype]
     public sealed class BasicEnemy : MonoBehaviour, ITarget, IHittable
     {
+        public event Action<GameObject> Died;
         public Transform Transform => transform;
         
         [SerializeField] private float _speed = 1f;
@@ -96,7 +97,7 @@ namespace Game.Gameplay
         {
             if (_currentPathIndex <= 0)
             {
-                Destroy(gameObject);
+                Died?.Invoke(gameObject);
                 return;
             }
             var pathPoint = _path.ElementAt(_currentPathIndex);
@@ -128,25 +129,7 @@ namespace Game.Gameplay
         private void Die()
         {
             _coinsView.AddCoins(_countOfMoneyDropOnDeath);
-            Destroy(gameObject);
-        }
-
-        private void OnDrawGizmos()
-        {
-            if(_path == null) return;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(_deathBounds.center, _deathBounds.size);
-
-            Gizmos.color = Color.blue;
-
-            var cellVectors = new Vector3[_path.Count];
-            for(int i=0; i<_path.Count; i++)
-            {
-                var cellVector = new Vector3(_path[i].WorldX + _gridManager.Grid.WorldPosition.x, _path[i].WorldY + _gridManager.Grid.WorldPosition.y, 0);
-                cellVectors[i] = cellVector;
-            }
-
-            Gizmos.DrawLineStrip(cellVectors, false);
+            Died?.Invoke(gameObject);
         }
 
         public void Impact(ImpactHitData impactHitData)
