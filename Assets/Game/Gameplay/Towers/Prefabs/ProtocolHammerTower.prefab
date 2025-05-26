@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6269065561333468971}
   - component: {fileID: 5332718040656714719}
   - component: {fileID: 175912901519319912}
+  - component: {fileID: 8721762241126791999}
   m_Layer: 8
   m_Name: ProtocolHammerTower
   m_TagString: Untagged
@@ -147,6 +148,18 @@ MonoBehaviour:
   _enemySensor: {fileID: 5332718040656714719}
   _towerView: {fileID: 6269065561333468971}
   _weaponView: {fileID: 3773601830638293562}
+--- !u!114 &8721762241126791999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439110979319971805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1968df0cd6b41bb8762eed7164738b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &542365891597955160
 GameObject:
   m_ObjectHideFlags: 0

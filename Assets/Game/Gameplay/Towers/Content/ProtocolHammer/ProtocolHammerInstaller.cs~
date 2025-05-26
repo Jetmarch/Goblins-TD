@@ -1,5 +1,4 @@
 using Game.GameEngine.Common;
-using Game.GameEngine.EntityComponents;
 using Game.Gameplay.Towers.Components;
 using Game.Gameplay.Towers.Controllers;
 using Game.Gameplay.Towers.Presenters;
@@ -17,7 +16,6 @@ namespace Game.Gameplay.Towers
         [SerializeField] private EnemySensor _enemySensor;
         [SerializeField] private TowerView _towerView;
         [SerializeField] private WeaponView _weaponView;
-        [SerializeField] private ComponentStorage _componentStorage;
         
         protected override void Configure(IContainerBuilder builder)
         {
