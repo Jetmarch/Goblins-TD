@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Game.App
 {
-    public class LoadingManager : MonoBehaviour
+    public sealed class LoadingManager : MonoBehaviour
     {
         private static LoadingManager _instance;
 

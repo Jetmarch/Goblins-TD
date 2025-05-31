@@ -5,12 +5,12 @@ using VContainer.Unity;
 
 namespace Game.GameEngine.Common
 {
-    public sealed class GameLoopController : IInitializable, IDisposable
+    public sealed class AddGameLoopListenerController : IInitializable, IDisposable
     {
         private readonly IEnumerable<IGameLoopListener> _listeners;
         private readonly IGameLoopManager _gameLoopManager;
 
-        public GameLoopController(IEnumerable<IGameLoopListener> listeners, IGameLoopManager gameLoopManager)
+        public AddGameLoopListenerController(IEnumerable<IGameLoopListener> listeners, IGameLoopManager gameLoopManager)
         {
             _listeners = listeners;
             _gameLoopManager = gameLoopManager;

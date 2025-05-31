@@ -6,5 +6,7 @@ namespace Modules.Core.GameLoop
         void RemoveListener(IGameLoopListener listener);
         void PauseGame();
         void ResumeGame();
+        void StartGame();
+        void FinishGame();
     }
 }

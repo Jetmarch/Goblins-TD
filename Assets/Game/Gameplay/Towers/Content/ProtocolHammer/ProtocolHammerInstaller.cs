@@ -60,7 +60,7 @@ namespace Game.Gameplay.Towers
             builder.Register<AttackRequestObserver>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<ProjectileRequestObserver>(Lifetime.Scoped).AsImplementedInterfaces();
             
-            builder.Register<GameLoopController>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<AddGameLoopListenerController>(Lifetime.Scoped).AsImplementedInterfaces();
         }
     }
 }

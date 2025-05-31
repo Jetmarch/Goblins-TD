@@ -23,6 +23,8 @@ namespace Game.GameEngine.DragAndDrop
         private Camera _camera;
 
         private ILevelCell _possibleCellForBuilding;
+
+        private Vector2 _startPosition;
         
         private void Start()
         {
@@ -37,6 +39,7 @@ namespace Game.GameEngine.DragAndDrop
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            _startPosition = transform.position;
             _canvasGroup.alpha = _onDragAlpha;
             _gridView.Show();
         }
@@ -63,8 +66,17 @@ namespace Game.GameEngine.DragAndDrop
         {
             _canvasGroup.alpha = 1f;
             _gridView.Hide();
-            if(_possibleCellForBuilding == default) return;
-            if (!LevelGridUseCases.CanBuild(_possibleCellForBuilding)) return;
+            if (_possibleCellForBuilding == default)
+            {
+                transform.position = _startPosition;
+                return;
+            }
+
+            if (!LevelGridUseCases.CanBuild(_possibleCellForBuilding))
+            {
+                transform.position = _startPosition;
+                return;
+            }
             
             var towerPosition = LevelGridUseCases.GetCenterOfCell(_possibleCellForBuilding);
             var newTowerOnGrid = Instantiate(_towerPrefab, towerPosition, _towerPrefab.transform.rotation, _towerParent);

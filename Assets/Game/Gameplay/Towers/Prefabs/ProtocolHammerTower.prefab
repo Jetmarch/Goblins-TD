@@ -148,6 +148,7 @@ MonoBehaviour:
   _enemySensor: {fileID: 5332718040656714719}
   _towerView: {fileID: 6269065561333468971}
   _weaponView: {fileID: 3773601830638293562}
+  _componentStorage: {fileID: 8721762241126791999}
 --- !u!114 &8721762241126791999
 MonoBehaviour:
   m_ObjectHideFlags: 0
