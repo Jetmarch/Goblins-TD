@@ -12,7 +12,7 @@ namespace Game.Gameplay.LevelGrid
         private void Start()
         {
             ConstructGrid();
-            Hide();
+            Show();
         }
 
         private void ConstructGrid()
@@ -27,7 +27,7 @@ namespace Game.Gameplay.LevelGrid
                     var gridCell = Instantiate(_gridCellPrefab, cellPosition, _gridCellPrefab.transform.rotation, _gridCellParent).GetComponent<CellView>();
                     gridCell.transform.localScale = new Vector3(cell.Size, cell.Size, 1f);
                     _gridCells[x,y] = gridCell;
-                    gridCell.SetWalkable(cell.IsWalkable);
+                    gridCell.SetType(cell.Type);
                 }
             }
         }

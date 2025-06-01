@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RaycastWeapon
   m_EditorClassIdentifier: 
   _weaponData:
-    _attackSpeed: 4
+    _attackSpeed: 2
     _projectileId: Raycast
     _damage: 5
     _knockback: 1

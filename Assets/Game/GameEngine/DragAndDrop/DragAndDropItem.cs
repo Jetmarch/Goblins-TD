@@ -41,7 +41,6 @@ namespace Game.GameEngine.DragAndDrop
         {
             _startPosition = transform.position;
             _canvasGroup.alpha = _onDragAlpha;
-            _gridView.Show();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -65,7 +64,6 @@ namespace Game.GameEngine.DragAndDrop
         public void OnEndDrag(PointerEventData eventData)
         {
             _canvasGroup.alpha = 1f;
-            _gridView.Hide();
             if (_possibleCellForBuilding == default)
             {
                 transform.position = _startPosition;

@@ -2,6 +2,7 @@ using System;
 using Game.Gameplay.Impacts;
 using Game.Gameplay.Towers;
 using Modules.Core.GameLoop;
+using UnityEngine;
 
 namespace Game.Gameplay.Weapons
 {
@@ -28,7 +29,7 @@ namespace Game.Gameplay.Weapons
             {
                 return;
             }
-
+            Debug.Log("Attack");
             var spawnProjectileData = new SpawnProjectileData(_weaponData.ProjectileId,
                 _view.ShootPointTransform.position, _view.ShootPointTransform.rotation);
             var impactHitData = new ImpactHitData(_weaponData.Damage, _weaponData.Knockback);
