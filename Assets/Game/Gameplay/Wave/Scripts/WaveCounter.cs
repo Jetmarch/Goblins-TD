@@ -4,6 +4,9 @@ namespace Game.Gameplay.WaveSystem
 {
     public class WaveCounter
     {
+        public event Action WaveDurationUpdated;
+        public float CurrentWaveDuration => _currentWaveDuration;
+        public float WaveDuration => _waveDuration;
         public event Action OnCounterComplete;
         private float _waveDuration;
         private float _currentWaveDuration;
@@ -22,6 +25,7 @@ namespace Game.Gameplay.WaveSystem
             if (!_isActive) return;
             
             _currentWaveDuration += deltaTime;
+            WaveDurationUpdated?.Invoke();
 
             if (_currentWaveDuration >= _waveDuration)
             {

@@ -10,6 +10,7 @@ namespace Game.UI.Gameplay
     {
         [SerializeField] private Button _startNextWaveButton;
         [SerializeField] private TextMeshProUGUI _waveCounter;
+        [SerializeField] private Slider _waveDurationSlider;
         [SerializeField] private WaveManager _waveManager;
         private void Start()
         {
@@ -20,10 +21,12 @@ namespace Game.UI.Gameplay
             
             _startNextWaveButton.onClick.AddListener(StartNextWave);
 
-            _waveManager.StartWave += SetWaveCounter;
+            _waveManager.StartWave += SetWaveInfo;
             _waveManager.AllWavesComplete += SetFinalWaveText;
+            _waveManager.WaveCounter.WaveDurationUpdated += SetWaveDuration;
+            _waveDurationSlider.value = 1;
             
-            SetWaveCounter();
+            SetWaveInfo();
         }
 
         private void StartNextWave()
@@ -31,14 +34,20 @@ namespace Game.UI.Gameplay
             _waveManager.NextWave();
         }
 
-        private void SetWaveCounter()
+        private void SetWaveInfo()
         {
             _waveCounter.text = $"Wave: {_waveManager.CurrentWave}";
+            _waveDurationSlider.value = 1;
         }
 
         private void SetFinalWaveText()
         {
             _waveCounter.text = "Final wave!";
+        }
+
+        private void SetWaveDuration()
+        {
+            _waveDurationSlider.value = 1 - (_waveManager.CurrentWaveDuration / _waveManager.WaveDuration);
         }
     }
 }

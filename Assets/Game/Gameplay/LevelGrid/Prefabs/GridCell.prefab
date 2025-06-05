@@ -102,6 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _highlightColorEmpty: {r: 0.3413903, g: 0.764151, b: 0.3135903, a: 0.2509804}
   _highlightColorBusy: {r: 0.7264151, g: 0.33236918, b: 0.33236918, a: 0.2509804}
-  _defaultColor: {r: 1, g: 1, b: 1, a: 0.2509804}
-  _walkableColor: {r: 0.8301887, g: 0.8176431, b: 0.090067655, a: 0.62352943}
+  _defaultColor: {r: 0.3458326, g: 0.4433962, b: 0.21542364, a: 0.2509804}
+  _walkableColor: {r: 0.33094516, g: 0.4715951, b: 0.6320754, a: 0.827451}
   _spriteRenderer: {fileID: 7857344069320775886}

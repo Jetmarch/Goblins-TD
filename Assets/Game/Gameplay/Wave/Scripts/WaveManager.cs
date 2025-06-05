@@ -1,7 +1,6 @@
 using System;
 using Game.GameEngine.Common;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 
 namespace Game.Gameplay.WaveSystem
@@ -10,9 +9,12 @@ namespace Game.Gameplay.WaveSystem
     public sealed class WaveManager : MonoBehaviour, IWaveManager
     {
         public event Action AllWavesComplete;
+        public WaveCounter WaveCounter => _waveCounter;
         public bool IsAllWavesComplete => _currentWave >= _waveDataConfig.Waves.Count;
         public event Action StartWave;
         public int CurrentWave => _currentWave;
+        public float CurrentWaveDuration => _waveCounter.CurrentWaveDuration;
+        public float WaveDuration => _waveCounter.WaveDuration;
         
         [SerializeField] private WaveDataConfig _waveDataConfig;
         [SerializeField] private WaveSpawner _waveSpawner;
@@ -58,6 +60,7 @@ namespace Game.Gameplay.WaveSystem
             if (_wavesComplete) return;
             
             _waveCounter.UpdateCounter(Time.deltaTime);
+            
         }
 
         public void NextWave()
