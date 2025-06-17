@@ -4,6 +4,7 @@ using Game.Gameplay.Controllers;
 using Game.Gameplay.Enemies;
 using Game.Gameplay.Levels;
 using Game.Gameplay.Projectiles;
+using Game.Gameplay.Storages;
 using Game.Gameplay.Towers.PlayerBase;
 using Game.Gameplay.WaveSystem;
 using Game.Meta.PlayerStash;
@@ -40,6 +41,9 @@ namespace Game.GameEngine.Installers
         
         [Header("Projectiles")]
         [SerializeField] private LayerMask _raycastProjectilesLayerMask;
+
+        [Header("Bullet Storage")] 
+        [SerializeField] private BulletStorage _bulletStorage;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -56,6 +60,8 @@ namespace Game.GameEngine.Installers
             
             builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
+            
+            builder.RegisterInstance(_bulletStorage).AsSelf();
             builder.RegisterInstance(_gameResultView).AsSelf();
         }
 

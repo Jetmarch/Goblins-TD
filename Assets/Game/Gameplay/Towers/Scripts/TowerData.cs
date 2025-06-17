@@ -12,6 +12,7 @@ namespace Game.Gameplay.Towers
         public float RotateSpeed => _rotateSpeed;
         public float CritChance => _critChance;
         public float AttackAngle => _attackAngle;
+        public int AmountOfBulletsPerShot => _amountOfBulletsPerShot;
         public string ProjectileId => _projectileId;
         
         [SerializeField] private float _damage;
@@ -20,17 +21,19 @@ namespace Game.Gameplay.Towers
         [SerializeField] private float _rotateSpeed;
         [SerializeField] private float _critChance;
         [SerializeField] private float _attackAngle;
+        [SerializeField] private int _amountOfBulletsPerShot;
         [SerializeField] private string _projectileId;
 
         public TowerData(TowerData root)
         {
-            _damage = root.Damage;
-            _attackSpeed = root.AttackSpeed;
-            _attackRadius = root.AttackRadius;
-            _rotateSpeed = root.RotateSpeed;
-            _critChance = root.CritChance;
-            _attackAngle = root.AttackAngle;
-            _projectileId = root.ProjectileId;
+            _damage = root._damage;
+            _attackSpeed = root._attackSpeed;
+            _attackRadius = root._attackRadius;
+            _rotateSpeed = root._rotateSpeed;
+            _critChance = root._critChance;
+            _attackAngle = root._attackAngle;
+            _amountOfBulletsPerShot = root._amountOfBulletsPerShot;
+            _projectileId = root._projectileId;
         }
     }
 }
