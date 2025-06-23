@@ -14,6 +14,8 @@ namespace Game.Gameplay.Storages
         [SerializeField] private int _maxAmount;
         [SerializeField] private int _minAmount = 0;
 
+        private object _lock = new();
+
         public void Add(int amount)
         {
             _currentAmount += amount;
@@ -23,9 +25,12 @@ namespace Game.Gameplay.Storages
 
         public void Decrease(int amount)
         {
-            _currentAmount -= amount;
-            _currentAmount = Mathf.Clamp(_currentAmount, _minAmount, _maxAmount);
-            AmountChanged?.Invoke();
+            lock (_lock)
+            {
+                _currentAmount -= amount;
+                _currentAmount = Mathf.Clamp(_currentAmount, _minAmount, _maxAmount);
+                AmountChanged?.Invoke();
+            }
         }
         
         private void SetAmount(int amount)
