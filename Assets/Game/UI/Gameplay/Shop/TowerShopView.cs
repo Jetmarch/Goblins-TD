@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game.GameEngine.Common;
 using Game.Gameplay.Coins;
-using Game.UI.Bag;
+using Game.UI.Bag.Tower;
 using UnityEngine;
 
 namespace Game.UI.Shop

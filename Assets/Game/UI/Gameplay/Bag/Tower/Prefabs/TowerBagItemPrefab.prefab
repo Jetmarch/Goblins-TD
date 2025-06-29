@@ -161,8 +161,9 @@ GameObject:
   - component: {fileID: 7505639826373181860}
   - component: {fileID: 4693203728269193105}
   - component: {fileID: 8759883000307582746}
+  - component: {fileID: 8743389518216225029}
   m_Layer: 5
-  m_Name: TowerCard
+  m_Name: TowerBagItemPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,13 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd21f97577255f4b843ea74f6590b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerPrefab: {fileID: 439110979319971805, guid: ea6cfff32b1e2dd41b45defbdb57adbc, type: 3}
-  _towerParent: {fileID: 0}
   _rectTransform: {fileID: 7505639826373181860}
-  _globalGridManager: {fileID: 0}
   _canvasGroup: {fileID: 8759883000307582746}
   _onDragAlpha: 0.35
-  _gridView: {fileID: 0}
 --- !u!225 &8759883000307582746
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -220,3 +217,16 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8743389518216225029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785129000200751193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fa276df90445e68c114b72c78c2a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerPrefab: {fileID: 439110979319971805, guid: ea6cfff32b1e2dd41b45defbdb57adbc, type: 3}

@@ -19,5 +19,7 @@ MonoBehaviour:
     _rotateSpeed: 1
     _critChance: 15
     _attackAngle: 5
-    _amountOfBulletsPerShot: 2
     _projectileId: 
+    _amountOfBulletsPerShot: 2
+    _maxAmountOfBullets: 25
+    _minAmountOfBullets: 0

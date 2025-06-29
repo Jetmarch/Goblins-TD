@@ -1,5 +1,6 @@
 using System;
 using Game.Gameplay.Impacts;
+using Game.Gameplay.Storages;
 using Game.Gameplay.Towers;
 using Modules.Core.GameLoop;
 using UnityEngine;
@@ -12,23 +13,29 @@ namespace Game.Gameplay.Weapons
         
         private readonly IWeaponView _view;
         private readonly WeaponData _weaponData;
+        private readonly AmmoStorage _ammoStorage;
 
         private float _currentAttackDelay;
         private ITarget _currentTarget;
         
 
-        public WeaponPresenter(WeaponData weaponData, IWeaponView view)
+        public WeaponPresenter(WeaponData weaponData, IWeaponView view, AmmoStorage ammoStorage)
         {
             _weaponData = weaponData;
             _view = view;
+            
+            _ammoStorage = ammoStorage; 
+            _ammoStorage.Init(_weaponData.MaxAmountOfBullets, _weaponData.MinAmountOfBullets);
         }
 
         public void Attack()
         {
-            if (_currentAttackDelay > 0f)
-            {
-                return;
-            }
+            if (_currentAttackDelay > 0f) return;
+            
+            if (_ammoStorage.CurrentAmount < _weaponData.AmountOfBulletsPerShot) return;
+            
+            _ammoStorage.Decrease(_weaponData.AmountOfBulletsPerShot);
+            
             Debug.Log("Attack");
             var spawnProjectileData = new SpawnProjectileData(_weaponData.ProjectileId,
                 _view.ShootPointTransform.position, _view.ShootPointTransform.rotation);

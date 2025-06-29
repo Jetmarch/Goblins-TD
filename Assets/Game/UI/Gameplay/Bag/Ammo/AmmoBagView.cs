@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using Game.GameEngine.Common;
-using Game.GameEngine.DragAndDrop;
 using UnityEngine;
 
-namespace Game.UI.Bag
+namespace Game.UI.Bag.Ammo
 {
     [Prototype]
-    public sealed class TowerBagView : BasePanelView
+    public sealed class AmmoBagView : BasePanelView
     {
-        [SerializeField] private DragAndDropItem _dragAndDropItemPrefab;
+        [SerializeField] private AmmoBagItem _dragAndDropItemPrefab;
 
         [SerializeField] private Transform _bagParent;
-        [SerializeField] private List<DragAndDropItem> _bagItems; 
+        [SerializeField] private List<AmmoBagItem> _bagItems; 
         
-        public void AddTower(string towerId)
+        public void AddAmmo(string ammoId)
         {
             //TODO: Add tower by id
             //

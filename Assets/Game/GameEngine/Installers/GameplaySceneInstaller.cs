@@ -42,8 +42,6 @@ namespace Game.GameEngine.Installers
         [Header("Projectiles")]
         [SerializeField] private LayerMask _raycastProjectilesLayerMask;
 
-        [Header("Bullet Storage")] 
-        [SerializeField] private BulletStorage _bulletStorage;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -61,7 +59,6 @@ namespace Game.GameEngine.Installers
             builder.Register<RewardManager>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerStash>(Lifetime.Singleton).AsImplementedInterfaces();
             
-            builder.RegisterInstance(_bulletStorage).AsSelf();
             builder.RegisterInstance(_gameResultView).AsSelf();
         }
 

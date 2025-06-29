@@ -1,4 +1,5 @@
 using Game.GameEngine.GridSystem;
+using UnityEngine;
 
 namespace Game.Gameplay.LevelGrid
 {
@@ -10,6 +11,7 @@ namespace Game.Gameplay.LevelGrid
         LevelCellType Type { get; }
         bool IsWalkable { get; }
         void SetType(LevelCellType type);
-        void SetBusy(bool isBusy);
+        void SetOccupier(GameObject occupier);
+        GameObject Occupier { get; }
     }
 }

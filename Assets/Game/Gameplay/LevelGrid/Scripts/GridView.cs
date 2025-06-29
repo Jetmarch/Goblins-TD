@@ -68,12 +68,12 @@ namespace Game.Gameplay.LevelGrid
             }
         }
 
-        public void SetCellBusy(int x, int y, bool isBusy)
+        public void SetCellOccupier(int x, int y, GameObject occupier)
         {
-            var cellView = GetCell(x, y);
-            cellView?.SetBusy(isBusy);
             var cell = _gridManager.Grid.GetCell(x, y);
-            cell?.SetBusy(isBusy);
+            cell?.SetOccupier(occupier);
+            var cellView = GetCell(x, y);
+            cellView?.SetBusy(occupier != null);
         }
 
         private CellView GetCell(int x, int y)

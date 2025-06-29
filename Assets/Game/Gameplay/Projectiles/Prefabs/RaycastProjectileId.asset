@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2920718784fd4756a94eadf5bf9172ab, type: 3}
-  m_Name: RaycastWeapon
+  m_Script: {fileID: 11500000, guid: 9d177c5c5defb3a40a66010235d4df5b, type: 3}
+  m_Name: RaycastProjectileId
   m_EditorClassIdentifier: 
-  _weaponData:
-    _attackSpeed: 2
-    _projectileId: Raycast
-    _damage: 5
-    _knockback: 1
-    _amountOfBulletsPerShot: 2
-    _maxAmountOfBullets: 36
-    _minAmountOfBullets: 0
+  _uniqueId: 90ff302e-bc57-4bb6-8896-26bd39b236bd

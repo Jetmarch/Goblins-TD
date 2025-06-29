@@ -12,15 +12,16 @@ namespace Game.Gameplay.LevelGrid
         public float WorldY => _gridY * _size + _worldPosition.y;
         public float Size => _size;
         public bool IsWalkable => _type == LevelCellType.Walkable;
-        public bool IsBusy => _isBusy;
+        public bool IsBusy => _occupier != null;
         public LevelCellType Type => _type;
+        public GameObject Occupier => _occupier;
 
         [SerializeField] private int _gridX;
         [SerializeField] private int _gridY;
         [SerializeField] private Vector2 _worldPosition;
         [SerializeField] private float _size;
-        [SerializeField] private bool _isBusy;
         [SerializeField] private LevelCellType _type;
+        [SerializeField] private GameObject _occupier;
         
         public LevelCell(int gridX, int gridY, float size, LevelCellType type)
         {
@@ -43,9 +44,9 @@ namespace Game.Gameplay.LevelGrid
             _type = type;
         }
 
-        public void SetBusy(bool isBusy)
+        public void SetOccupier(GameObject occupier)
         {
-            _isBusy = isBusy;
+            _occupier = occupier;
         }
 
         public void SetWorldPosition(Vector2 worldPosition)

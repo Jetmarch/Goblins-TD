@@ -8,5 +8,6 @@ namespace Game.Gameplay.Towers
         Transform WeaponTransform { get; }
 
         public void PlayAttackFX();
+        public void SetAmmoAmountText(string text);
     }
 }

@@ -1,10 +1,12 @@
 using Game.GameEngine.Common;
 using Game.GameEngine.EntityComponents;
+using Game.Gameplay.Storages;
 using Game.Gameplay.Towers.Components;
 using Game.Gameplay.Towers.Controllers;
 using Game.Gameplay.Towers.Presenters;
 using Game.Gameplay.Weapons;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -18,6 +20,7 @@ namespace Game.Gameplay.Towers
         [SerializeField] private TowerView _towerView;
         [SerializeField] private WeaponView _weaponView;
         [SerializeField] private ComponentStorage _componentStorage;
+        [FormerlySerializedAs("_bulletStorage")] [SerializeField] private AmmoStorage _ammoStorage;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -27,7 +30,8 @@ namespace Game.Gameplay.Towers
             ConfigureTower(builder, towerData);
             ConfigureWeapon(builder);
             ConfigureControllers(builder);
-            
+
+            builder.RegisterInstance(_ammoStorage);
             builder.Register<RotatingTowerPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<WeaponPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
         }
