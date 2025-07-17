@@ -5,9 +5,9 @@ namespace Game.Gameplay.Conditions
 {
     public static class VictoryConditionsUseCases
     {
-        public static bool IsVictory(IWaveManager waveManager, IEnemyManager enemyManager)
+        public static bool IsVictory(IEnemyManager enemyManager)
         {
-            return waveManager.IsAllWavesComplete && enemyManager.IsAllEnemiesKilled;
+            return enemyManager.IsAllEnemiesKilled;
         }
     }
 }
